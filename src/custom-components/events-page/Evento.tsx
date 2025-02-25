@@ -26,6 +26,16 @@ export const Evento = ({
     .toString()
     .padStart(2, '0');
   const dia = date.toLocaleDateString();
+  const nombreDia = (date: Date) => {
+    const elDiaEs = new Intl.DateTimeFormat('es-ES', {
+      weekday: 'long',
+    }).format(date);
+
+    return elDiaEs.charAt(0).toUpperCase() + elDiaEs.slice(1);
+  };
+
+  const diaDeLaSemana = nombreDia(initialDate);
+
   return (
     <Link
       href={title
@@ -35,21 +45,25 @@ export const Evento = ({
     >
       <article className='flex flex-col items-start border bg-slate-50 rounded-xl px-2 pb-1'>
         <div className='flex items-center gap-x-4 text-xs'>
+          <span className='font-semibold tracking-wide text-blue-900'>
+            {diaDeLaSemana}
+          </span>
+
           <time
             dateTime={initialDate.toString()}
             className='text-gray-500'
           >
             {dia} - {hs}:{min}
           </time>
-          <div className='relative flex flex-row gap-1 z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100'>
+          <div className='flex flex-row gap-1 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100'>
             <IoLocationSharp className='mt-0.5' />
             {locationName}
           </div>
         </div>
-        <div className='group relative'>
+        <div className='group'>
           <h3 className='mt-2 mb-1 ms-3 sm:text-2xl font-semibold text-start  text-gray-900 group-hover:text-gray-600'>
             <span>
-              <span className='absolute inset-0' />
+              <span className='inset-0' />
               {title}
             </span>
           </h3>
@@ -57,18 +71,19 @@ export const Evento = ({
             {description}
           </p>
         </div>
-        <div className='relative flex items-center mt-2 gap-x-4'>
+        <div className='flex items-center mt-2 gap-x-4'>
           <Image
-            width={24}
-            height={24}
+            width={400}
+            height={400}
+            quality={100}
             alt=''
             src={image === '' ? './globe.svg' : image}
-            className='size-10 rounded-full bg-gray-50'
+            className='w-20 h-20  rounded-sm'
           />
-          <div className='text-xs sm:text-sm/6'>
+          <div className='text-xs  sm:text-sm/6'>
             <p className='font-semibold text-gray-900'>
               <span>
-                <span className='absolute inset-0' />
+                <span className=' inset-0' />
                 {location}
               </span>
             </p>

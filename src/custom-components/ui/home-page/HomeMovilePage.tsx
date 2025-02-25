@@ -8,6 +8,7 @@ export const HomeMovilePage = () => {
       <div className=''>
         <EventsGrid />
       </div>
+      <div className='border-t m-2 bg-slate-500 h-0.5' />
       <div className=''>
         <CalendarGrid />
       </div>
