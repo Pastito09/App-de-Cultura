@@ -4,16 +4,16 @@ import { Sidebar } from '@/custom-components/home-page/Sidebar';
 
 export const HomePage = () => {
   return (
-    <>
-      <div className='w-1/3  border-e-2'>
+    <div className='flex h-full'>
+      <div className='sm:w-1/3 order-1 sm:border-e-2 w-[80%]'>
         <EventsGrid />
       </div>
-      <div className='flex-1 justify-center items-center'>
+      <div className=' sm:flex-1  w-auto order-3 sm-order-2 justify-center items-center'>
         <CalendarGrid />
       </div>
-      <div className='lg:w-[12%] h-screen border ms-1 border-slate-300 rounded-lg'>
+      <div className='lg:w-[12%] h-screen border hidden lg:block sm:order-3 ms-1 border-slate-300 rounded-lg'>
         <Sidebar />
       </div>
-    </>
+    </div>
   );
 };
