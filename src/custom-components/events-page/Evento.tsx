@@ -62,7 +62,7 @@ export const Evento = ({
             width={24}
             height={24}
             alt=''
-            src={'./globe.svg'}
+            src={image === '' ? './globe.svg' : image}
             className='size-10 rounded-full bg-gray-50'
           />
           <div className='text-xs sm:text-sm/6'>

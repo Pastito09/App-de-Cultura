@@ -1,5 +1,3 @@
-import { getYear } from 'date-fns';
-
 export const Footer = () => {
   return (
     <>
