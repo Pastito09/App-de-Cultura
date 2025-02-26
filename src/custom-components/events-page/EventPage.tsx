@@ -1,15 +1,7 @@
 import { getDiasHoras } from '@/utils/getDiasHoras';
 import Image from 'next/image';
 import Link from 'next/link';
-import {
-  IoCalendarOutline,
-  IoEarOutline,
-  IoLocateOutline,
-  IoLocationSharp,
-  IoMapOutline,
-  IoPinOutline,
-  IoPinSharp,
-} from 'react-icons/io5';
+import { IoLocationSharp } from 'react-icons/io5';
 
 interface Props {
   title: string;

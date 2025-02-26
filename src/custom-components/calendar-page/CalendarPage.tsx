@@ -3,7 +3,6 @@ import { Calendar } from '@/components/ui/calendar';
 import { useState } from 'react';
 
 import { es } from 'date-fns/locale';
-import { Footer } from '../ui/Footer';
 
 export const CalendarPage = () => {
   const [date, setDate] = useState<Date | undefined>(new Date());
