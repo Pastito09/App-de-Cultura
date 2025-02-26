@@ -34,7 +34,6 @@ export const CalendarPage = () => {
           className='rounded-md border'
         />
       </div>
-      <Footer />
     </div>
   );
 };

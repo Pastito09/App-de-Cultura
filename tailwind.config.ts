@@ -66,8 +66,12 @@ export default {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
+  		},
+		  scrollbar: ['rounded'],
+		  gridTemplateRows: {
+			'[auto,auto,1fr]': 'auto auto 1fr',
+		  },
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require('tailwind-scrollbar')],
 } satisfies Config;

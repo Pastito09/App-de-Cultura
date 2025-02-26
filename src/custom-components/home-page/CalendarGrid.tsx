@@ -1,4 +1,5 @@
 import { CalendarPage } from '../calendar-page/CalendarPage';
+import { Footer } from '../ui/Footer';
 
 export const CalendarGrid = () => {
   return (
@@ -14,6 +15,7 @@ export const CalendarGrid = () => {
         <div className='h-1 bg-fuchsia-700 w-[75%] m-4' />
       </div>
       <CalendarPage />
+      {/* <Footer /> */}
     </>
   );
 };

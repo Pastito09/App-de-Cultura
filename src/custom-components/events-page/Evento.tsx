@@ -1,8 +1,10 @@
+import { getDiasHoras } from '@/utils/getDiasHoras';
 import Image from 'next/image';
 import Link from 'next/link';
 import { IoLocationSharp } from 'react-icons/io5';
 
 interface Props {
+  id: string;
   title: string;
   description: string;
   initialDate: Date;
@@ -12,6 +14,7 @@ interface Props {
 }
 
 export const Evento = ({
+  id,
   title,
   description,
   initialDate,
@@ -20,29 +23,25 @@ export const Evento = ({
   image = '',
 }: Props) => {
   const date = initialDate;
-  const hs = date.getHours();
-  const min = date
-    .getMinutes()
-    .toString()
-    .padStart(2, '0');
-  const dia = date.toLocaleDateString();
-  const nombreDia = (date: Date) => {
-    const elDiaEs = new Intl.DateTimeFormat('es-ES', {
-      weekday: 'long',
-    }).format(date);
+  const { dia, diaDeLaSemana, hs, min } = getDiasHoras(date);
+  // const hs = date.getHours();
+  // const min = date
+  //   .getMinutes()
+  //   .toString()
+  //   .padStart(2, '0');
+  // const dia = date.toLocaleDateString();
+  // const nombreDia = (date: Date) => {
+  //   const elDiaEs = new Intl.DateTimeFormat('es-ES', {
+  //     weekday: 'long',
+  //   }).format(date);
 
-    return elDiaEs.charAt(0).toUpperCase() + elDiaEs.slice(1);
-  };
+  //   return elDiaEs.charAt(0).toUpperCase() + elDiaEs.slice(1);
+  // };
 
-  const diaDeLaSemana = nombreDia(initialDate);
+  // const diaDeLaSemana = nombreDia(initialDate);
 
   return (
-    <Link
-      href={title
-        .trim()
-        .replace(/\s/g, '-')
-        .toLowerCase()}
-    >
+    <Link href={id}>
       <article className='flex flex-col items-start border bg-slate-50 rounded-xl px-2 pb-1'>
         <div className='flex items-center gap-x-4 text-xs'>
           <span className='font-semibold tracking-wide text-blue-900'>
@@ -77,7 +76,7 @@ export const Evento = ({
             height={400}
             quality={100}
             alt=''
-            src={image === '' ? './globe.svg' : image}
+            src={image || '/placeholder.jpg'}
             className='w-20 h-20  rounded-sm'
           />
           <div className='text-xs  sm:text-sm/6'>
