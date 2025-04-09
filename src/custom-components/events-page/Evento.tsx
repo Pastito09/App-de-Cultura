@@ -66,7 +66,7 @@ export const Evento = ({
               {title}
             </span>
           </h3>
-          <p className='line-clamp-3 text-sm/6 text-gray-600'>
+          <p className='line-clamp-3 text-center text-sm/6 text-gray-600'>
             {description}
           </p>
         </div>
@@ -77,16 +77,18 @@ export const Evento = ({
             quality={100}
             alt=''
             src={image || '/placeholder.jpg'}
-            className='w-20 h-20  rounded-sm'
+            className='w-20 h-20  rounded-sm hidden sm:block'
           />
-          <div className='text-xs  sm:text-sm/6'>
-            <p className='font-semibold text-gray-900'>
-              <span>
-                <span className=' inset-0' />
+          <div className='text-xs flex gap-4 sm:gap-0 sm:flex-col sm:text-sm/6'>
+            <div>
+              <p className='font-semibold text-gray-900'>
                 {location}
-              </span>
-            </p>
-            <p className='text-gray-600'>{locationName}</p>
+              </p>
+            </div>
+            <div className='block sm:hidden'>-</div>
+            <div>
+              <p className='text-gray-600'>{locationName}</p>
+            </div>
           </div>
         </div>
       </article>
