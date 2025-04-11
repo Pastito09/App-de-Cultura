@@ -10,12 +10,12 @@ export const Evento = ({
   eventDescription,
   eventDate,
   startTime,
-  endTime,
+
   eventLocationName,
   eventLocation,
   image,
 }: Props) => {
-  const { dia, diaDeLaSemana, hs, min } = getDiasHoras(eventDate);
+  const { dia, diaDeLaSemana } = getDiasHoras(eventDate);
   // const hs = date.getHours();
   // const min = date
   //   .getMinutes()

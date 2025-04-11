@@ -8,12 +8,9 @@ import { Evento as Props } from '@/interface/Evento.interface';
 import { useRouter } from 'next/navigation';
 
 export const EventPage = ({
-  id,
   eventTitle,
   eventDescription,
   eventDate,
-  startTime,
-  endTime,
   eventLocationName,
   eventLocation,
   image,
