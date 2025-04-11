@@ -1,29 +1,21 @@
+import { Evento as Props } from '@/interface/Evento.interface';
 import { getDiasHoras } from '@/utils/getDiasHoras';
 import Image from 'next/image';
 import Link from 'next/link';
 import { IoLocationSharp } from 'react-icons/io5';
 
-interface Props {
-  id: string;
-  title: string;
-  description: string;
-  initialDate: Date;
-  locationName: string;
-  location: string;
-  image?: string;
-}
-
 export const Evento = ({
   id,
-  title,
-  description,
-  initialDate,
-  locationName,
-  location,
-  image = '',
+  eventTitle,
+  eventDescription,
+  eventDate,
+  startTime,
+  endTime,
+  eventLocationName,
+  eventLocation,
+  image,
 }: Props) => {
-  const date = initialDate;
-  const { dia, diaDeLaSemana, hs, min } = getDiasHoras(date);
+  const { dia, diaDeLaSemana, hs, min } = getDiasHoras(eventDate);
   // const hs = date.getHours();
   // const min = date
   //   .getMinutes()
@@ -49,25 +41,25 @@ export const Evento = ({
           </span>
 
           <time
-            dateTime={initialDate.toString()}
+            dateTime={eventDate.toString()}
             className='text-gray-500'
           >
-            {dia} - {hs}:{min}
+            {dia} - {startTime}Hs.
           </time>
           <div className='flex flex-row gap-1 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100'>
             <IoLocationSharp className='mt-0.5' />
-            {locationName}
+            {eventLocationName}
           </div>
         </div>
         <div className='group'>
           <h3 className='mt-2 mb-1 ms-3 sm:text-2xl font-semibold text-start  text-gray-900 group-hover:text-gray-600'>
             <span>
               <span className='inset-0' />
-              {title}
+              {eventTitle}
             </span>
           </h3>
           <p className='line-clamp-3 text-center text-sm/6 text-gray-600'>
-            {description}
+            {eventDescription}
           </p>
         </div>
         <div className='flex items-center mt-2 gap-x-4'>
@@ -82,12 +74,12 @@ export const Evento = ({
           <div className='text-xs flex gap-4 sm:gap-0 sm:flex-col sm:text-sm/6'>
             <div>
               <p className='font-semibold text-gray-900'>
-                {location}
+                {eventLocation.join(',  ')}
               </p>
             </div>
             <div className='block sm:hidden'>-</div>
             <div>
-              <p className='text-gray-600'>{locationName}</p>
+              <p className='text-gray-600'>{eventLocationName}</p>
             </div>
           </div>
         </div>

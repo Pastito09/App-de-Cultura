@@ -1,7 +1,8 @@
 import { CalendarGrid } from '@/custom-components/home-page/CalendarGrid';
-import { EventsGrid } from '@/custom-components/home-page/EventsGrid';
+
 import { Sidebar } from '@/custom-components/home-page/Sidebar';
 import { Footer } from '../Footer';
+import EventsGrid from '@/custom-components/home-page/EventsGrid';
 
 export const HomePage = () => {
   return (

@@ -1,34 +1,35 @@
+'use client';
 import { getDiasHoras } from '@/utils/getDiasHoras';
 import Image from 'next/image';
 import Link from 'next/link';
 import { IoLocationSharp } from 'react-icons/io5';
 
-interface Props {
-  title: string;
-  description: string;
-  initialDate: Date;
-  locationName: string;
-  location: string;
-  image?: string;
-}
+import { Evento as Props } from '@/interface/Evento.interface';
+import { useRouter } from 'next/navigation';
 
 export const EventPage = ({
-  title,
-  description,
-  initialDate,
-  locationName,
-  location,
+  id,
+  eventTitle,
+  eventDescription,
+  eventDate,
+  startTime,
+  endTime,
+  eventLocationName,
+  eventLocation,
   image,
 }: Props) => {
-  const { diaDeLaSemana, dia, hs, min } = getDiasHoras(initialDate);
+  const { diaDeLaSemana, dia, hs, min } = getDiasHoras(eventDate);
+
+  const router = useRouter();
+
   return (
     <>
-      <div className='bg-black  h-auto md:h-[95vh] '>
+      <div className='bg-black  h-auto md:min-h-screen '>
         <div className='pt-6'>
           <div className='mx-auto max-w-2xl px-4 pt-10 pb-16 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto_auto_1fr] lg:gap-x-8 lg:px-8 lg:pt-16 lg:pb-24'>
             <div className='lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8'>
               <h1 className='text-3xl font-bold tracking-tight text-gray-300 sm:text-5xl'>
-                {title}
+                {eventTitle}
               </h1>
             </div>
 
@@ -36,7 +37,7 @@ export const EventPage = ({
             <div className='mt-4 lg:row-span-3 lg:mt-0'>
               <Image
                 src={image || '/placeholder.jpg'}
-                alt={description}
+                alt={eventDescription}
                 height={500}
                 width={500}
                 quality={100}
@@ -50,7 +51,7 @@ export const EventPage = ({
 
                 <div className='space-y-6'>
                   <p className='text-base text-gray-400'>
-                    {description}
+                    {eventDescription}
                   </p>
                 </div>
               </div>
@@ -64,7 +65,7 @@ export const EventPage = ({
                   <div className='text-gray-400 flex '>
                     <IoLocationSharp size={20} className='me-2' />
                     <span className='text-gray-400'>
-                      {location} - {locationName}
+                      {eventLocation.join(', ')} - {eventLocationName}
                     </span>
                   </div>
                 </div>
@@ -94,13 +95,20 @@ export const EventPage = ({
             </div>
           </div>
         </div>
-        <div className='flex py-5 md:pt-28 justify-center items-center'>
-          <Link
-            href={'/'}
+        <div className='flex py-5 md:pt-24 justify-center items-center'>
+          <button
+            onClick={() => {
+              if (document.referrer === '') {
+                router.push('/home');
+              } else {
+                router.back();
+              }
+            }}
+            type='button'
             className='text-slate-700 bg-slate-50 font-semibold hover:bg-slate-200 rounded-2xl p-2 antialiased'
           >
             Volver
-          </Link>
+          </button>
         </div>
       </div>
     </>

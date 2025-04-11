@@ -11,10 +11,9 @@ export const CalendarGrid = () => {
         <span className='text-xs sm:text-lg'>
           Pinchá en el calendario para ver detalles
         </span>
-        <div className='h-1 bg-fuchsia-700 w-[75%] m-4' />
+        <div className='h-0.5 bg-fuchsia-700 w-[75%] m-1 sm:m-4' />
       </div>
       <CalendarPage />
-      {/* <Footer /> */}
     </>
   );
 };
