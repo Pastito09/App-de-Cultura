@@ -7,7 +7,7 @@ import { initialData } from '@/seed/seed';
 import Referencias from './ui/Referencias';
 import { CalendarDialog } from './ui/CalendarDialog';
 import { CalendarEvent } from '@/interface/CalendarEvent.interface';
-import { set } from 'date-fns';
+// import { set } from 'date-fns';
 
 function sameDay(a: Date, b: Date) {
   return (

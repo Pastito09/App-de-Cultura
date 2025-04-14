@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { IoLocationSharp } from 'react-icons/io5';
 
 import { Evento as Props } from '@/interface/Evento.interface';
-import { useRouter } from 'next/navigation';
 
 export const EventPage = ({
   eventTitle,
@@ -16,8 +15,6 @@ export const EventPage = ({
   image,
 }: Props) => {
   const { diaDeLaSemana, dia, hs, min } = getDiasHoras(eventDate);
-
-  const router = useRouter();
 
   return (
     <>

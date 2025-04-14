@@ -5,7 +5,7 @@
 import clsx from 'clsx';
 import Link from 'next/link';
 import { useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 type FormInputs = {
   name: string;
@@ -17,7 +17,7 @@ export const RegisterForm = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const {
     register,
-    handleSubmit,
+    // handleSubmit,
     formState: { errors },
   } = useForm<FormInputs>();
 
@@ -38,6 +38,7 @@ export const RegisterForm = () => {
   return (
     <form
       // onSubmit={handleSubmit(onSubmit)}
+      onSubmit={() => setErrorMessage('Hola')}
       className='flex flex-col'
     >
       {/* {errors.name?.type === 'required' && (
