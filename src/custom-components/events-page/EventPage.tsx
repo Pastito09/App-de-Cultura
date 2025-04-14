@@ -93,19 +93,12 @@ export const EventPage = ({
           </div>
         </div>
         <div className='flex py-5 md:pt-24 justify-center items-center'>
-          <button
-            onClick={() => {
-              if (document.referrer === '') {
-                router.push('/home');
-              } else {
-                router.back();
-              }
-            }}
-            type='button'
+          <Link
+            href={'/'}
             className='text-slate-700 bg-slate-50 font-semibold hover:bg-slate-200 rounded-2xl p-2 antialiased'
           >
             Volver
-          </button>
+          </Link>
         </div>
       </div>
     </>

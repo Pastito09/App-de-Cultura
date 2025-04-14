@@ -60,7 +60,7 @@ export const initialData: SeedData = {
       eventTitle: 'Payasos de Nadie vuelve al ruedo!',
       eventDescription:
         'Vamos a tocar clasicos acompañados de nuestros amigos de siempre',
-      eventDate: agregarDias(hoy, 21),
+      eventDate: agregarDias(hoy, 14),
       startTime: '22:00', // Formato "HH:mm"
       endTime: '23:00',
       eventLocationName: 'CC El Gaucho',
@@ -102,11 +102,25 @@ export const initialData: SeedData = {
       eventTitle: 'Tres Bife, Semprini y La Tumba del Alca',
       eventDescription:
         'En el Tio Bizarro vamos a flashear toda la noche',
-      eventDate: agregarDias(hoy, 35),
+      eventDate: agregarDias(hoy, 55),
       startTime: '22:00', // Formato "HH:mm"
       endTime: '23:00',
       eventLocationName: 'Tio Bizarro',
       eventLocation: ['Pellegrini 123', 'Burzaco'],
+      image: '/ambito.jpg',
+      tags: ['rock', 'reggae', 'punk'],
+      createdAt: new Date(),
+    },
+    {
+      id: '8',
+      eventTitle: 'X90 - Los Pasacalles',
+      eventDescription:
+        'En el CC Metamorfosis de Monte Grande tocando temprano y puntual',
+      eventDate: agregarDias(hoy, 52),
+      startTime: '22:00', // Formato "HH:mm"
+      endTime: '23:00',
+      eventLocationName: 'CC Metamorfosis',
+      eventLocation: ['Soler 458', 'Monte Grande'],
       image: '/ambito.jpg',
       tags: ['rock', 'reggae', 'punk'],
       createdAt: new Date(),

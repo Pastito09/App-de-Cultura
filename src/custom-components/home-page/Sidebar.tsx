@@ -6,22 +6,22 @@ export const Sidebar = () => {
     {
       id: 1,
       name: 'Crear Evento',
-      url: '#',
+      url: '/admin/crear',
     },
     {
       id: 2,
       name: 'Buscar Evento',
-      url: '/#',
+      url: '/admin/buscar',
     },
     {
       id: 3,
       name: 'Mis Eventos',
-      url: '/#',
+      url: '/admin/mis-eventos',
     },
     {
       id: 4,
       name: 'Borrar Evento',
-      url: '/#',
+      url: '/admin/borrar',
     },
     {
       id: 5,
@@ -31,7 +31,7 @@ export const Sidebar = () => {
     {
       id: 6,
       name: 'Modificar Perfil',
-      url: '/#',
+      url: '/admin/perfil',
     },
   ];
 

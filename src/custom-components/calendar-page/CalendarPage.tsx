@@ -1,12 +1,13 @@
 'use client';
 import { Calendar } from '@/components/ui/calendar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { es } from 'date-fns/locale';
 import { initialData } from '@/seed/seed';
 import Referencias from './ui/Referencias';
 import { CalendarDialog } from './ui/CalendarDialog';
 import { CalendarEvent } from '@/interface/CalendarEvent.interface';
+import { set } from 'date-fns';
 
 function sameDay(a: Date, b: Date) {
   return (
@@ -16,22 +17,6 @@ function sameDay(a: Date, b: Date) {
   );
 }
 
-const dataEventos: CalendarEvent[] = initialData.events.map(
-  (event) => {
-    const eventDate = new Date(event.eventDate);
-    const eventTitle = event.eventTitle;
-    const locationName = event.eventLocationName;
-    const eventTime = event.startTime;
-    const eventId = event.id;
-    return {
-      eventDate,
-      eventTitle,
-      locationName,
-      eventTime,
-      eventId,
-    };
-  }
-);
 const modifiersClassNames = {
   event:
     'bg-emerald-800 hover:bg-emerald-900 text-white hover:text-slate-100',
@@ -46,6 +31,27 @@ export const CalendarPage = () => {
     Date | undefined
   >();
   const [isOpen, setIsOpen] = useState(false);
+  const [dataEventos, setDataEventos] = useState<CalendarEvent[]>([]);
+
+  useEffect(() => {
+    const generarEventos = () => {
+      return initialData.events.map((event) => {
+        const eventDate = new Date(event.eventDate);
+        const eventTitle = event.eventTitle;
+        const locationName = event.eventLocationName;
+        const eventTime = event.startTime;
+        const eventId = event.id;
+        return {
+          eventDate,
+          eventTitle,
+          locationName,
+          eventTime,
+          eventId,
+        };
+      });
+    };
+    setDataEventos(generarEventos());
+  }, []);
 
   const handleSelectDate = (date: Date | undefined) => {
     if (!date) return;
@@ -85,6 +91,7 @@ export const CalendarPage = () => {
           }}
           modifiersClassNames={modifiersClassNames}
         />
+
         <Calendar
           locale={es}
           defaultMonth={
