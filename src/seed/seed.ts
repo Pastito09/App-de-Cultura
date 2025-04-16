@@ -27,6 +27,8 @@ export const initialData: SeedData = {
       image: '/ambito.jpg',
       tags: ['rock', 'reggae', 'punk'],
       createdAt: new Date(),
+      ticketPrice: 5500,
+      eventType: 'concierto',
     },
     {
       id: '2',
@@ -41,6 +43,8 @@ export const initialData: SeedData = {
       image: '/ambito.jpg',
       tags: ['rock', 'reggae', 'punk'],
       createdAt: new Date(),
+      ticketPrice: 0,
+      eventType: 'concierto',
     },
     {
       id: '3',
@@ -54,20 +58,24 @@ export const initialData: SeedData = {
       image: '/ambito.jpg',
       tags: ['rock', 'reggae', 'punk'],
       createdAt: new Date(),
+      ticketPrice: 3000,
+      eventType: 'concierto',
     },
     {
       id: '4',
-      eventTitle: 'Payasos de Nadie vuelve al ruedo!',
+      eventTitle: 'Usted esta siendo interpretado!',
       eventDescription:
-        'Vamos a tocar clasicos acompañados de nuestros amigos de siempre',
+        'Por Luis Maria Carnicetti, vuelve el unipersonal a la feria sudaka',
       eventDate: agregarDias(hoy, 14),
       startTime: '22:00', // Formato "HH:mm"
       endTime: '23:00',
       eventLocationName: 'CC El Gaucho',
-      eventLocation: ['Alsina 1465', 'Burzaco'],
+      eventLocation: ['Portela 145', 'Lomas de Zamora'],
       image: '/ambito.jpg',
-      tags: ['rock', 'reggae', 'punk'],
+      tags: ['humor', 'improvisación', 'teatro'],
       createdAt: new Date(),
+      ticketPrice: 6000,
+      eventType: 'teatro',
     },
     {
       id: '5',
@@ -82,6 +90,8 @@ export const initialData: SeedData = {
       image: '/ambito.jpg',
       tags: ['rock', 'reggae', 'punk'],
       createdAt: new Date(),
+      ticketPrice: 10000,
+      eventType: 'concierto',
     },
     {
       id: '6',
@@ -96,6 +106,8 @@ export const initialData: SeedData = {
       image: '/ambito.jpg',
       tags: ['rock', 'reggae', 'punk'],
       createdAt: new Date(),
+      ticketPrice: 4600,
+      eventType: 'concierto',
     },
     {
       id: '7',
@@ -110,6 +122,8 @@ export const initialData: SeedData = {
       image: '/ambito.jpg',
       tags: ['rock', 'reggae', 'punk'],
       createdAt: new Date(),
+      ticketPrice: 8000,
+      eventType: 'concierto',
     },
     {
       id: '8',
@@ -124,6 +138,8 @@ export const initialData: SeedData = {
       image: '/ambito.jpg',
       tags: ['rock', 'reggae', 'punk'],
       createdAt: new Date(),
+      ticketPrice: 7000,
+      eventType: 'concierto',
     },
     // {
     //   id: '1',

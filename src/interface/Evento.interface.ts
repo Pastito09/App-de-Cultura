@@ -1,3 +1,10 @@
+type EventType =
+  | 'concierto'
+  | 'teatro'
+  | 'fiesta'
+  | 'feria'
+  | 'otros';
+
 export interface Evento {
   id: string;
   eventTitle: string;
@@ -11,4 +18,6 @@ export interface Evento {
   tags?: string[];
   createdAt?: Date;
   updatedAt?: Date;
+  ticketPrice?: number | string;
+  eventType: EventType;
 }

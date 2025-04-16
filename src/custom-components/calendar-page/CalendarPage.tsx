@@ -30,8 +30,9 @@ export const CalendarPage = () => {
   const [selectedDate, setSelectedDate] = useState<
     Date | undefined
   >();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [dataEventos, setDataEventos] = useState<CalendarEvent[]>([]);
+  const [today, setToday] = useState<Date | null>(null);
 
   useEffect(() => {
     const generarEventos = () => {
@@ -53,6 +54,10 @@ export const CalendarPage = () => {
     setDataEventos(generarEventos());
   }, []);
 
+  useEffect(() => {
+    setToday(new Date());
+  }, []);
+
   const handleSelectDate = (date: Date | undefined) => {
     if (!date) return;
     setSelectedDate(date);
@@ -67,6 +72,8 @@ export const CalendarPage = () => {
     ? dataEventos.filter((ev) => sameDay(ev.eventDate, selectedDate))
     : [];
 
+  if (!today) return null;
+
   return (
     <div className='flex flex-col items-center m-4'>
       <Referencias />
@@ -74,7 +81,8 @@ export const CalendarPage = () => {
       <div className='grid grid-cols-1 2xl:grid-cols-3 gap-3 2xl:gap-2 justify-center'>
         <Calendar
           mode='single'
-          fromDate={new Date()}
+          fromDate={today}
+          defaultMonth={today}
           locale={es}
           disableNavigation
           className='rounded-md border'
@@ -94,11 +102,11 @@ export const CalendarPage = () => {
 
         <Calendar
           locale={es}
+          fromMonth={
+            new Date(today.getFullYear(), today.getMonth() + 2)
+          }
           defaultMonth={
-            new Date(
-              new Date().getFullYear(),
-              new Date().getMonth() + 1
-            )
+            new Date(today.getFullYear(), today.getMonth() + 1)
           }
           disableNavigation
           mode='single'
@@ -121,16 +129,10 @@ export const CalendarPage = () => {
         <Calendar
           locale={es}
           fromMonth={
-            new Date(
-              new Date().getFullYear(),
-              new Date().getMonth() + 2
-            )
+            new Date(today.getFullYear(), today.getMonth() + 2)
           }
           defaultMonth={
-            new Date(
-              new Date().getFullYear(),
-              new Date().getMonth() + 2
-            )
+            new Date(today.getFullYear(), today.getMonth() + 2)
           }
           mode='single'
           selected={selectedDate}

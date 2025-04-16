@@ -13,6 +13,7 @@ export const EventPage = ({
   eventLocationName,
   eventLocation,
   image,
+  ticketPrice,
 }: Props) => {
   const { diaDeLaSemana, dia, hs, min } = getDiasHoras(eventDate);
 
@@ -73,7 +74,9 @@ export const EventPage = ({
                 <div className='mt-4 flex gap-4'>
                   <div className=''>
                     <p className='text-sm m-1 text-gray-500'>
-                      {'$4000'}
+                      {ticketPrice !== 0
+                        ? `$${ticketPrice}`
+                        : '$0.00'}
                     </p>
                   </div>
                   <div className=''>
