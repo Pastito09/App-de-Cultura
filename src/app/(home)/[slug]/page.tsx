@@ -1,7 +1,9 @@
-import { initialData } from '../../../seed/seed';
+export const revalidate = 60; // seconds
+
 import EventPage from '@/custom-components/events-page/EventPage';
 
-const data = initialData.events;
+import { getEventBySlugWithImage } from '@/actions/events/getEventBySlugWithImage';
+
 export default async function EventoPage({
   params,
 }: {
@@ -9,7 +11,16 @@ export default async function EventoPage({
 }) {
   const { slug } = await params;
 
-  const evento = data.find(({ id }) => id === slug);
+  const { ok, evento, message } = await getEventBySlugWithImage(slug);
+
+  if (!ok) {
+    return (
+      <div>
+        <span>Evento no encontrado</span>
+        <span>{message}</span>
+      </div>
+    );
+  }
 
   return (
     <>

@@ -1,21 +1,25 @@
-import { Evento as Props } from '@/interface/Evento.interface';
+import { EventoDB } from '@/interface/EventoDB.interface';
 import { getDiasHoras } from '@/utils/getDiasHoras';
 import Image from 'next/image';
 import Link from 'next/link';
-import { IoLocationSharp } from 'react-icons/io5';
+import { IoLocationSharp, IoMusicalNotes } from 'react-icons/io5';
+import { FaCalendar, FaMasksTheater } from 'react-icons/fa6';
+import { BiParty } from 'react-icons/bi';
+import { GiPartyFlags } from 'react-icons/gi';
 
 export const Evento = ({
-  id,
   eventTitle,
   eventDescription,
   eventDate,
   startTime,
-
+  eventSlug,
   eventLocationName,
   eventLocation,
+  eventType,
   image,
-}: Props) => {
-  const { dia, diaDeLaSemana } = getDiasHoras(eventDate);
+}: EventoDB) => {
+  const { dia, diaDeLaSemana } =
+    getDiasHoras(eventDate) || new Date();
   // const hs = date.getHours();
   // const min = date
   //   .getMinutes()
@@ -32,24 +36,46 @@ export const Evento = ({
 
   // const diaDeLaSemana = nombreDia(initialDate);
 
-  return (
-    <Link href={id}>
-      <article className='flex flex-col items-start border bg-slate-50 rounded-xl px-2 pb-1'>
-        <div className='flex items-center gap-x-4 text-xs'>
-          <span className='font-semibold tracking-wide text-blue-900'>
-            {diaDeLaSemana}
-          </span>
+  const tipoDeEvento = (evento: string) => {
+    switch (evento) {
+      case 'concierto':
+        return <IoMusicalNotes className='mt-0.5' size={15} />;
+      case 'teatro':
+        return <FaMasksTheater className='mt-0.5' size={15} />;
+      case 'fiesta':
+        return <BiParty className='mt-0.5' size={15} />;
+      case 'feria':
+        return <GiPartyFlags className='mt-0.5' size={15} />;
 
-          <time
-            dateTime={eventDate.toString()}
-            className='text-gray-500'
-          >
-            {dia} - {startTime}Hs.
-          </time>
+      default:
+        return <FaCalendar className='mt-0.5' size={15} />;
+    }
+  };
+
+  return (
+    <Link href={eventSlug}>
+      <article className='flex flex-col items-start border bg-slate-50 rounded-xl px-2 pb-1'>
+        <div className='flex flex-row w-full justify-between items-center me-2 text-xs'>
+          <div>
+            <span className='font-semibold tracking-wide text-blue-900'>
+              {diaDeLaSemana || 'sin fecha'}
+            </span>
+          </div>
+
+          <div>
+            <time
+              dateTime={eventDate.toString()}
+              className='text-gray-500'
+            >
+              {dia || 'sin fecha'} - {startTime}Hs.
+            </time>
+          </div>
+
           <div className='flex flex-row gap-1 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100'>
             <IoLocationSharp className='mt-0.5' />
             {eventLocationName}
           </div>
+          <div>{tipoDeEvento(eventType)}</div>
         </div>
         <div className='group'>
           <h3 className='mt-2 mb-1 ms-3 sm:text-2xl font-semibold text-start  text-gray-900 group-hover:text-gray-600'>
@@ -58,7 +84,7 @@ export const Evento = ({
               {eventTitle}
             </span>
           </h3>
-          <p className='line-clamp-3 text-center text-sm/6 text-gray-600'>
+          <p className='line-clamp-2  text-sm/6 text-gray-600'>
             {eventDescription}
           </p>
         </div>
@@ -67,14 +93,14 @@ export const Evento = ({
             width={400}
             height={400}
             quality={100}
-            alt=''
-            src={image || '/placeholder.jpg'}
+            alt='imagen del evento'
+            src={image?.url || '/placeholder.jpg'}
             className='w-20 h-20  rounded-sm hidden sm:block'
           />
           <div className='text-xs flex gap-4 sm:gap-0 sm:flex-col sm:text-sm/6'>
             <div>
               <p className='font-semibold text-gray-900'>
-                {eventLocation.join(',  ')}
+                {eventLocation}
               </p>
             </div>
             <div className='block sm:hidden'>-</div>

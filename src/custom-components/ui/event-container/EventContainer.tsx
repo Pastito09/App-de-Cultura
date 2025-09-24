@@ -4,7 +4,7 @@ export const EventContainer = ({
   children: React.ReactNode;
 }) => {
   return (
-    <div className='flex flex-col items-center justify-center h-[50vh] bg-gray-100'>
+    <div className='flex flex-col items-center justify-center mt-10 bg-gray-100'>
       {children}
     </div>
   );

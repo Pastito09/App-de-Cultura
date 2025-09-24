@@ -3,11 +3,11 @@ import { Calendar } from '@/components/ui/calendar';
 import { useEffect, useState } from 'react';
 
 import { es } from 'date-fns/locale';
-import { initialData } from '@/seed/seed';
+// import { initialData } from '@/seed/seed';
 import Referencias from './ui/Referencias';
 import { CalendarDialog } from './ui/CalendarDialog';
 import { CalendarEvent } from '@/interface/CalendarEvent.interface';
-// import { set } from 'date-fns';
+import { CustomCalendar } from '../calendar/CustomCalendar';
 
 function sameDay(a: Date, b: Date) {
   return (
@@ -19,40 +19,26 @@ function sameDay(a: Date, b: Date) {
 
 const modifiersClassNames = {
   event:
-    'bg-emerald-800 hover:bg-emerald-900 text-white hover:text-slate-100',
+    'bg-emerald-800 hover:bg-emerald-900 text-white hover:text-slate-100 rounded',
   selected:
-    '!bg-blue-500 text-white hover:bg-blue-600 hover:text-slate-100',
+    '!bg-blue-500 text-white hover:bg-blue-600 hover:text-slate-100 rounded',
   today:
-    'bg-blue-300 text-gray-100 hover:bg-blue-400 hover:text-slate-100 ',
+    'bg-blue-300 text-gray-100 hover:bg-blue-400 hover:text-slate-100 rounded ',
   selectedEvent: '!bg-blue-500 !text-white ',
 };
-export const CalendarPage = () => {
+export const CalendarPage = ({
+  calendarEvents,
+}: {
+  calendarEvents: CalendarEvent[];
+}) => {
   const [selectedDate, setSelectedDate] = useState<
     Date | undefined
   >();
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [dataEventos, setDataEventos] = useState<CalendarEvent[]>([]);
+  const [dataEventos, setDataEventos] = useState<CalendarEvent[]>(
+    calendarEvents
+  );
   const [today, setToday] = useState<Date | null>(null);
-
-  useEffect(() => {
-    const generarEventos = () => {
-      return initialData.events.map((event) => {
-        const eventDate = new Date(event.eventDate);
-        const eventTitle = event.eventTitle;
-        const locationName = event.eventLocationName;
-        const eventTime = event.startTime;
-        const eventId = event.id;
-        return {
-          eventDate,
-          eventTitle,
-          locationName,
-          eventTime,
-          eventId,
-        };
-      });
-    };
-    setDataEventos(generarEventos());
-  }, []);
 
   useEffect(() => {
     setToday(new Date());
@@ -79,76 +65,53 @@ export const CalendarPage = () => {
       <Referencias />
 
       <div className='grid grid-cols-1 2xl:grid-cols-3 gap-3 2xl:gap-2 justify-center'>
-        <Calendar
-          mode='single'
-          fromDate={today}
-          defaultMonth={today}
-          locale={es}
-          disableNavigation
-          className='rounded-md border'
-          selected={selectedDate}
-          onSelect={handleSelectDate}
-          onDayClick={(date) => handleSelectDate(date)}
-          modifiers={{
-            event: dataEventos.map((ev) => ev.eventDate),
-            selectedEvent: selectedDate
-              ? dataEventos
-                  .filter((ev) => sameDay(ev.eventDate, selectedDate))
-                  .map((ev) => ev.eventDate)
-              : [],
-          }}
+        <CustomCalendar
+          monthOffset={0}
+          today={today}
+          selectedDate={selectedDate}
+          handleSelectDate={handleSelectDate}
+          eventos={calendarEvents}
           modifiersClassNames={modifiersClassNames}
         />
-
-        <Calendar
-          locale={es}
-          fromMonth={
-            new Date(today.getFullYear(), today.getMonth() + 2)
-          }
-          defaultMonth={
-            new Date(today.getFullYear(), today.getMonth() + 1)
-          }
-          disableNavigation
-          mode='single'
-          selected={selectedDate}
-          onSelect={(date) => {
-            handleSelectDate(date);
-          }}
-          onDayClick={(date) => handleSelectDate(date)}
-          className='rounded-md border'
-          modifiers={{
-            event: dataEventos.map((ev) => ev.eventDate),
-            selectedEvent: selectedDate
-              ? dataEventos
-                  .filter((ev) => sameDay(ev.eventDate, selectedDate))
-                  .map((ev) => ev.eventDate)
-              : [],
-          }}
+        <CustomCalendar
+          monthOffset={1}
+          today={today}
+          selectedDate={selectedDate}
+          handleSelectDate={handleSelectDate}
+          eventos={calendarEvents}
           modifiersClassNames={modifiersClassNames}
-        />
-        <Calendar
-          locale={es}
-          fromMonth={
-            new Date(today.getFullYear(), today.getMonth() + 2)
-          }
-          defaultMonth={
-            new Date(today.getFullYear(), today.getMonth() + 2)
-          }
-          mode='single'
-          selected={selectedDate}
-          onSelect={(date) => {
-            handleSelectDate(date);
-          }}
-          onDayClick={(date) => handleSelectDate(date)}
-          className='rounded-md border'
-          modifiers={{
-            event: dataEventos.map((ev) => ev.eventDate),
-            selectedEvent: selectedDate
-              ? dataEventos
-                  .filter((ev) => sameDay(ev.eventDate, selectedDate))
-                  .map((ev) => ev.eventDate)
-              : [],
-          }}
+        />{' '}
+        <CustomCalendar
+          monthOffset={2}
+          today={today}
+          selectedDate={selectedDate}
+          handleSelectDate={handleSelectDate}
+          eventos={calendarEvents}
+          modifiersClassNames={modifiersClassNames}
+        />{' '}
+        <CustomCalendar
+          monthOffset={3}
+          today={today}
+          selectedDate={selectedDate}
+          handleSelectDate={handleSelectDate}
+          eventos={calendarEvents}
+          modifiersClassNames={modifiersClassNames}
+        />{' '}
+        <CustomCalendar
+          monthOffset={4}
+          today={today}
+          selectedDate={selectedDate}
+          handleSelectDate={handleSelectDate}
+          eventos={calendarEvents}
+          modifiersClassNames={modifiersClassNames}
+        />{' '}
+        <CustomCalendar
+          disableNavigation={false}
+          monthOffset={5}
+          today={today}
+          selectedDate={selectedDate}
+          handleSelectDate={handleSelectDate}
+          eventos={calendarEvents}
           modifiersClassNames={modifiersClassNames}
         />
       </div>

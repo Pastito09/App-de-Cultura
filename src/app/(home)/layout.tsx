@@ -8,7 +8,7 @@ export default function HomeLayout({
   return (
     <div className='flex flex-col min-h-screen'>
       <Navbar />
-      <main className='bg-gray-100 justify-center '>{children}</main>
+      <main className='bg-gray-100  justify-center '>{children}</main>
     </div>
   );
 }

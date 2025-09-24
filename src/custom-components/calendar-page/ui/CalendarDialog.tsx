@@ -9,6 +9,7 @@ import { CalendarEvent } from '@/interface/CalendarEvent.interface';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 import Link from 'next/link';
+import { titleTransform } from '../../../utils/titleTransform';
 
 interface Props {
   isOpen: boolean;
@@ -37,21 +38,24 @@ export const CalendarDialog = ({
 
           {eventosDelDia.length > 0 ? (
             <ul className='mt-2 space-y-2'>
-              {eventosDelDia.map((ev, i) => (
-                <li
-                  key={i}
-                  className='p-2 bg-sky-100 hover:bg-slate-200 text-blue-900 rounded-md'
-                >
-                  <Link
-                    href={`/${ev.eventId}`}
-                    className='flex flex-col'
+              {eventosDelDia.map((ev, i) => {
+                const eventSlug = titleTransform(ev.eventTitle);
+                return (
+                  <li
+                    key={i}
+                    className='p-2 bg-sky-100 hover:bg-slate-200 text-blue-900 rounded-md'
                   >
-                    {ev.eventTitle} - {ev.locationName},{' '}
-                    {ev.eventTime}
-                    Hs.
-                  </Link>
-                </li>
-              ))}
+                    <Link
+                      href={`/${eventSlug}`}
+                      className='flex flex-col'
+                    >
+                      {ev.eventTitle} - {ev.eventLocationName},{' '}
+                      {ev.startTime}
+                      Hs.
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           ) : (
             <p className='mt-4 text-gray-500'>

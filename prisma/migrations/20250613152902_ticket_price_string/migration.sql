@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Event" ALTER COLUMN "ticketPrice" DROP NOT NULL,
+ALTER COLUMN "ticketPrice" SET DATA TYPE TEXT;

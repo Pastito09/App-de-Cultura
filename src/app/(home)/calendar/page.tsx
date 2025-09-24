@@ -1,18 +1,15 @@
-import { CalendarGrid, Footer } from '@/custom-components';
-import Link from 'next/link';
+export const revalidate = 60; // seconds
 
-export default function CalendarPage() {
+import { Footer, VolverButton } from '@/custom-components';
+import CalendarGrid from '@/custom-components/home-page/CalendarGrid';
+import { getAllCalendarEvents } from '@/actions/events/getAllCalendarEvents';
+
+export default async function CalendarPage() {
+  const { events: calendarEvents } = await getAllCalendarEvents();
   return (
     <div className='min-h-screen'>
-      <CalendarGrid />
-      <div className='flex justify-center'>
-        <Link
-          href={'/'}
-          className='text-sm p-2 rounded-xl bg-slate-200 text-blue-950 hover:bg-slate-400 hover:font-semibold'
-        >
-          Volver al menu principal
-        </Link>
-      </div>
+      <CalendarGrid calendarEvents={calendarEvents} />
+      <VolverButton />
       <Footer />
     </div>
   );

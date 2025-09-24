@@ -1,14 +1,28 @@
+export const revalidate = 60; // seconds
+
+import {
+  getAllCalendarEvents,
+  getAllEventsWithImage,
+} from '@/actions';
 import { HomeMovilePage } from '@/custom-components/ui/home-page/HomeMovilePage';
 import { HomePage } from '@/custom-components/ui/home-page/HomePage';
 
-export default function Home() {
+export default async function Home() {
+  const { events: calendarEvent } = await getAllCalendarEvents();
+  const { ok, events } = await getAllEventsWithImage();
   return (
     <>
       <div className='hidden sm:block'>
-        <HomePage />
+        <HomePage
+          calendarEvents={calendarEvent}
+          events={events ?? []}
+        />
       </div>
       <div className='block sm:hidden'>
-        <HomeMovilePage />
+        <HomeMovilePage
+          calendarEvents={calendarEvent}
+          events={events ?? []}
+        />
       </div>
     </>
   );
