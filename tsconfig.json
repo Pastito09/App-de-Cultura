@@ -20,7 +20,11 @@
     ],
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "typeRoots": [
+      "./src/types", // 👈 agrega tu carpeta de tipos personalizados
+      "./node_modules/@types"
+    ]
   },
   "include": [
     "next-env.d.ts",

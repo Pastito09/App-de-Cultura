@@ -25,7 +25,7 @@ export const LoginForm = () => {
       router.replace('/');
       window.location.replace('/');
     }
-  }, [state]);
+  }, [state, router]);
   return (
     <form
       action={formAction}

@@ -9,7 +9,7 @@ import { HomePage } from '@/custom-components/ui/home-page/HomePage';
 
 export default async function Home() {
   const { events: calendarEvent } = await getAllCalendarEvents();
-  const { ok, events } = await getAllEventsWithImage();
+  const { events } = await getAllEventsWithImage();
   return (
     <>
       <div className='hidden sm:block'>

@@ -1,4 +1,4 @@
-import { getAllEventsWithImage, getUserEvents } from '@/actions';
+import { getUserEvents } from '@/actions';
 import { VolverButton } from '@/custom-components';
 import { CustomTitle } from '@/custom-components/ui/custom-title/CustomTitle';
 import { DeleteEventButton } from '@/custom-components/ui/delete-event-button/DeleteEventButton';
@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const MisEventos = async ({ userId }: Props) => {
-  const { ok, eventosDelUsuario } = await getUserEvents(userId);
+  const { eventosDelUsuario } = await getUserEvents(userId);
 
   if (eventosDelUsuario?.length === 0) {
     return (

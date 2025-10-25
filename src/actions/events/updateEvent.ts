@@ -1,6 +1,5 @@
 'use server';
 
-import { UpdateEventoProps } from '@/interface/UpdateEvento.interface';
 import { prisma } from '@/lib/prisma';
 
 import { z } from 'zod';
@@ -78,9 +77,8 @@ export const updateEvent = async (formData: FormData) => {
   const eventData = eventDataParsed.data;
   const { id, ...event } = eventData;
 
-  const prismaTx = await prisma.$transaction(async (tx) => {
-    let eventUpdated: UpdateEventoProps;
-    eventUpdated = await prisma.event.update({
+  const prismaTx = await prisma.$transaction(async () => {
+    const eventUpdated = await prisma.event.update({
       where: { id: id! },
       data: {
         ...event,
@@ -100,7 +98,6 @@ export const updateEvent = async (formData: FormData) => {
   revalidatePath('/buscar-eventos');
   revalidatePath('/mis-eventos');
   revalidatePath('/calendar');
-  console.log(prismaTx.eventUpdated);
 
   return {
     prismaTx,

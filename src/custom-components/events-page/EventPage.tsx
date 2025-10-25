@@ -4,20 +4,24 @@ import { getDiasHoras } from '@/utils/getDiasHoras';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { IoLocationSharp } from 'react-icons/io5';
+
 import { EventLocation } from '../ui/event-location/EventLocation';
 
-export const EventPage = ({
-  eventTitle,
-  eventDescription,
-  eventDate = new Date(),
-  eventLocationName,
-  eventLocation,
-  eventLocationMap,
-  image,
-  ticketLink,
-  ticketPrice,
-}: EventoDB) => {
+interface EventPageProps {
+  event: EventoDB;
+}
+export const EventPage = ({ event }: EventPageProps) => {
+  const {
+    eventTitle,
+    eventDescription,
+    eventDate = new Date(),
+    eventLocationName,
+    eventLocation,
+    eventLocationMap,
+    image,
+    ticketLink,
+    ticketPrice,
+  } = event;
   const router = useRouter();
 
   const { diaDeLaSemana, dia, hs, min } =

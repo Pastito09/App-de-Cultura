@@ -55,7 +55,7 @@ export const EventoCard = ({
             <IoLocationSharp className='mt-0.5' />
 
             <p className='font-semibold text-gray-900'>
-              {eventLocation.join(',  ')}
+              {eventLocation}
             </p>
             <div className=''> - </div>
             <p className='text-gray-600'>{eventLocationName}</p>

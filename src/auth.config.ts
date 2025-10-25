@@ -3,7 +3,7 @@ import Google from 'next-auth/providers/google'
 import {z} from 'zod'
 
 
-import type { NextAuthConfig } from 'next-auth';
+import type { NextAuthConfig, Session } from 'next-auth';
 import NextAuth from 'next-auth';
 import { prisma } from './lib/prisma';
 import { PrismaAdapter } from '@auth/prisma-adapter';
@@ -38,9 +38,11 @@ export const authConfig = {
           if (! bcryptjs.compareSync(password, user.password!)) return null
 
           // regresar usuario sin password
-          const { password: _, ...restUser} = user
+          
+          
+          delete (user.password      as {password?: string}).password;
 
-          return restUser;
+          return user;
       },
     }),
     
@@ -108,15 +110,14 @@ export const authConfig = {
     }
     return token;
   },
-  async session({ session, token }) {
+  async session({ session, token }: {session: Session, token: Record<string, unknown>}) {
   if (token) {
-    if (token.provider) {
-      // solo si existe
-      (session as any).provider = token.provider;
+     if (typeof token.provider === "string") {
+      session.provider = token.provider;
     }
 
-    if (token.id) {
-      session.user.id = token.id as string;
+    if (typeof token.id === "string") {
+      session.user.id = token.id;
     }
   }
 

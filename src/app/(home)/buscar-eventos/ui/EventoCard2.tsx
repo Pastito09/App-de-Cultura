@@ -2,7 +2,7 @@ import { EventoDB } from '@/interface/EventoDB.interface';
 import { getDiasHoras } from '@/utils/getDiasHoras';
 import Image from 'next/image';
 import Link from 'next/link';
-import { IoLocationSharp, IoMusicalNotes } from 'react-icons/io5';
+import { IoMusicalNotes } from 'react-icons/io5';
 import { FaCalendar, FaMasksTheater } from 'react-icons/fa6';
 import { BiParty } from 'react-icons/bi';
 import { GiPartyFlags } from 'react-icons/gi';
@@ -51,7 +51,7 @@ export const EventoCard2 = ({
             quality={100}
             priority
             alt='imagen del evento'
-            src={image || '/placeholder.jpg'}
+            src={image?.url || '/placeholder.jpg'}
             className='rounded-sm pt-1 hidden sm:block w-full'
           />
         </Link>

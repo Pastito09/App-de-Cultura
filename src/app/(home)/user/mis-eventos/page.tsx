@@ -3,8 +3,6 @@ import { MisEventos } from './ui/MisEventos';
 import { auth } from '@/auth.config';
 import { redirect } from 'next/navigation';
 
-import { getUserEvents } from '@/actions';
-
 export default async function MisEventosPage() {
   const session = await auth();
 

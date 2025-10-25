@@ -3,7 +3,6 @@ import { addMonths } from 'date-fns';
 import { es } from 'date-fns/locale';
 
 import { CalendarEvent } from '@/interface/CalendarEvent.interface';
-import { DayModifiers } from 'react-day-picker';
 
 function sameDay(a: Date, b: Date) {
   return (

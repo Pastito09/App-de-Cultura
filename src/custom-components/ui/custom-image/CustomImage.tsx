@@ -16,9 +16,9 @@ export const CustomImage = ({
   alt,
   height,
   width,
-  className,
-  style,
-}: Props) => {
+}: // className,
+// style,
+Props) => {
   const customSrc = src?.startsWith('http')
     ? src
     : '/images/placeholder.jpg';

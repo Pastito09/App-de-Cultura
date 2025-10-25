@@ -1,4 +1,5 @@
-import NextAuth from 'next-auth';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type {NextAuth} from 'next-auth';
 
 // Extendemos los tipos de NextAuth para incluir `user.id` y `provider`
 declare module 'next-auth' {

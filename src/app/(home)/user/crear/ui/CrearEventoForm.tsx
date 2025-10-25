@@ -40,10 +40,10 @@ export const CrearEventoForm = () => {
 
   const {
     register,
-    formState: { isValid },
+
     handleSubmit,
     watch,
-    getValues,
+
     setValue,
     control,
   } = useForm<FormInputs>();
@@ -100,9 +100,7 @@ export const CrearEventoForm = () => {
       formData.append('eventImage', fileList[0]);
     }
 
-    const { ok, prismaTx, error, message } = await createEvent(
-      formData
-    );
+    const { ok, prismaTx, message } = await createEvent(formData);
 
     if (!ok) {
       alert(

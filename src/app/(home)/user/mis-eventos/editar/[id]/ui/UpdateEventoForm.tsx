@@ -54,7 +54,7 @@ export const UpdateEventoForm = ({
 
   const {
     register,
-    formState: { errors },
+
     handleSubmit,
     watch,
 

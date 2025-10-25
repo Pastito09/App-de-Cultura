@@ -1,5 +1,4 @@
-import { IoChevronDown, IoPersonCircle } from 'react-icons/io5';
-import { FaPhotoFilm } from 'react-icons/fa6';
+import { IoChevronDown } from 'react-icons/io5';
 
 export const CrearEventoForm2 = () => {
   return (

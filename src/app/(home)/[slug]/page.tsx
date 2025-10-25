@@ -24,7 +24,7 @@ export default async function EventoPage({
 
   return (
     <>
-      <EventPage {...evento!} />
+      <EventPage event={evento!} />
     </>
   );
 }

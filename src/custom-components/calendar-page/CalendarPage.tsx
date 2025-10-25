@@ -1,9 +1,7 @@
 'use client';
-import { Calendar } from '@/components/ui/calendar';
+
 import { useEffect, useState } from 'react';
 
-import { es } from 'date-fns/locale';
-// import { initialData } from '@/seed/seed';
 import Referencias from './ui/Referencias';
 import { CalendarDialog } from './ui/CalendarDialog';
 import { CalendarEvent } from '@/interface/CalendarEvent.interface';
@@ -35,9 +33,7 @@ export const CalendarPage = ({
     Date | undefined
   >();
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [dataEventos, setDataEventos] = useState<CalendarEvent[]>(
-    calendarEvents
-  );
+  const [dataEventos] = useState<CalendarEvent[]>(calendarEvents);
   const [today, setToday] = useState<Date | null>(null);
 
   useEffect(() => {

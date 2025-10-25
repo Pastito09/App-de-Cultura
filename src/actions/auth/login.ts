@@ -13,7 +13,7 @@ export async function authenticate(
     });
     return 'Éxito';
   } catch (error) {
-    if ((error as any).type === 'CredentialsSignin') {
+    if (error === 'CredentialsSignin') {
       return 'CredentialsSignin';
     }
     return 'Error desconocido';

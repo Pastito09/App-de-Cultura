@@ -20,7 +20,11 @@ export default async function EditarEventoPage({ params }: Props) {
   if (!evento) {
     redirect('/user/crear/nuevo');
   }
-  const { user, tags, createdAt, ...rest } = evento;
+  const { user, ...rest } = evento;
+
+  if (!user) {
+    redirect('/');
+  }
 
   return (
     <EventContainer>

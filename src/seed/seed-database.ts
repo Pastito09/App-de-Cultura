@@ -23,7 +23,7 @@ async function main() {
     return map;
   }, {} as Record<string, string>); // patriciozhogan@gmail.com : user.id
 
-  for (const { DevId, eventTitle, image, ...event } of events) {
+  for (const { eventTitle, image, ...event } of events) {
     const createdEvent = await prisma.event.create({
       data: {
         ...event,

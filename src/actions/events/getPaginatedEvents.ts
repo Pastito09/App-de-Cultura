@@ -27,7 +27,14 @@ export const getPaginatedEvents = async ({
 
       where: where,
       include: {
-        image: true,
+        image: {
+          select: {
+            url: true,
+            id: true,
+            eventId: true,
+            publicId: true,
+          },
+        },
         user: {
           select: {
             email: true,
@@ -50,7 +57,6 @@ export const getPaginatedEvents = async ({
       totalPages: totalPages,
       events: events.map((event) => ({
         ...event,
-        image: event.image?.url,
       })),
     };
   } catch (error) {

@@ -1,15 +1,15 @@
 import { EventType } from '../../generated/prisma';
 
-interface EventImage {
-  id: string;
-  url: string;
-  eventId: string;
-}
+// interface EventImage {
+//   id: string;
+//   url: string;
+//   eventId: string;
+// }
 
-interface User {
-  id: string;
-  email: string | null;
-}
+// interface User {
+//   id: string;
+//   email: string | null;
+// }
 
 // export interface EventoDB {
 //   id: string;
@@ -33,7 +33,12 @@ interface User {
 // }
 
 export interface EventoDB {
-  image: string | undefined;
+  image?: {
+    id: string;
+    url: string;
+    publicId: string;
+    eventId: string;
+  } | null;
   user: {
     id: string;
     email: string | null;

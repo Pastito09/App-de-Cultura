@@ -1,5 +1,5 @@
 import { auth } from '@/auth.config';
-import Link from 'next/link';
+
 import { redirect } from 'next/navigation';
 
 export default async function AuthLayout({
