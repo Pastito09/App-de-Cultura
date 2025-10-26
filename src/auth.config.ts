@@ -16,6 +16,9 @@ export const authConfig = {
     signIn: '/auth/login',
     newUser: '/auth/register'
   },
+  session: {
+    strategy: 'jwt',
+  },
   providers: [
          Credentials({
       async authorize(credentials) {
@@ -35,14 +38,17 @@ export const authConfig = {
           if ( !user) return null
 
          // comparar contraseñas
-          if (! bcryptjs.compareSync(password, user.password!)) return null
+         const isValid = bcryptjs.compareSync(password, user.password!)
+          if (! isValid) return null
 
           // regresar usuario sin password
           
-          
-          delete (user.password      as {password?: string}).password;
 
-          return user;
+          return  {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+    };
       },
     }),
     
