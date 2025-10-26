@@ -18,11 +18,11 @@ const dataSidebarUser = [
     name: 'Mis eventos',
     url: '/user/mis-eventos',
   },
-  {
-    id: 4,
-    name: 'Perfil',
-    url: '/user/perfil',
-  },
+  // {
+  //   id: 4,
+  //   name: 'Perfil',
+  //   url: '/user/perfil',
+  // },
 ];
 
 const dataSidebarNotUser = [
@@ -49,15 +49,15 @@ export const Sidebar = async () => {
 
   return (
     <div className='h-full'>
-      <div className='flex flex-row justify-center items-center h-8 bg-gray-800 text-white mb-16'>
+      <div className='flex flex-row justify-center items-center h-8 bg-gray-800 text-white lg:mb-16'>
         <small>Manejá tus eventos</small>
       </div>
-      <div className='flex flex-col  m-2 mb-80'>
+      <div className='flex flex-row lg:flex-col justify-evenly m-2 lg:mb-80'>
         {!user
           ? dataSidebarNotUser.map((item) => (
               <div
                 key={item.id}
-                className='flex flex-row hover:bg-gray-200 p-1 ps-2 rounded-md m-1'
+                className='flex flex-row  hover:bg-gray-200 p-1 lg:ps-2 rounded-md m-1 bg-gray-200 lg:bg-inherit'
               >
                 <Link href={item.url}>
                   <small>{item.name}</small>
@@ -67,7 +67,7 @@ export const Sidebar = async () => {
           : dataSidebarUser.map((item) => (
               <div
                 key={item.id}
-                className='flex flex-row hover:bg-gray-200 p-1 ps-2 rounded-md m-1'
+                className='flex flex-row hover:bg-gray-200 p-1 ps-2 rounded-md m-1  bg-gray-200 lg:bg-inherit'
               >
                 <Link href={item.url}>
                   <small>{item.name}</small>
@@ -76,8 +76,8 @@ export const Sidebar = async () => {
             ))}
       </div>
       <div className='flex flex-col justify-center items-center '>
-        <div className='h-1 border bg-slate-700  w-full' />
-        <div className='mt-2 hover:bg-gray-200 w-3/4 text-center rounded-md'>
+        <div className='h-1 border bg-slate-700 hidden lg:block w-full' />
+        <div className='my-2 hover:bg-gray-200 w-3/4 text-center rounded-md hidden lg:block bg-gray-200 lg:bg-inherit'>
           <SessionButton user={user} />
         </div>
       </div>

@@ -27,8 +27,6 @@ export const EventPage = ({ event }: EventPageProps) => {
   const { diaDeLaSemana, dia, hs, min } =
     getDiasHoras(eventDate) || new Date();
 
-  console.log(eventLocationMap);
-
   return (
     <>
       <div className='bg-black min-h-screen '>

@@ -12,13 +12,13 @@ export default async function Home() {
   const { events } = await getAllEventsWithImage();
   return (
     <>
-      <div className='hidden sm:block'>
+      <div className='hidden lg:block'>
         <HomePage
           calendarEvents={calendarEvent}
           events={events ?? []}
         />
       </div>
-      <div className='block sm:hidden'>
+      <div className='block lg:hidden'>
         <HomeMovilePage
           calendarEvents={calendarEvent}
           events={events ?? []}

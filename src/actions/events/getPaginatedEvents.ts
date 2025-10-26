@@ -1,6 +1,7 @@
 'use server';
 
-import { EventType } from '../../../generated/prisma/index';
+import todayAt8UTC from '@/utils/todayAt8UTC';
+import { EventType, Prisma } from '../../../generated/prisma/index';
 import { prisma } from '@/lib/prisma';
 
 interface PaginatedEventsProps {
@@ -19,7 +20,16 @@ export const getPaginatedEvents = async ({
   const skip = (page - 1) * take;
 
   try {
-    const where = EventType ? { eventType: EventType } : {};
+    const todayAt8 = todayAt8UTC();
+    const dayFilter: Prisma.EventWhereInput = {
+      eventDate: {
+        gte: todayAt8,
+      },
+    };
+
+    const where: Prisma.EventWhereInput = EventType
+      ? { AND: [{ eventType: EventType }, dayFilter] }
+      : dayFilter;
 
     const events = await prisma.event.findMany({
       take: take,

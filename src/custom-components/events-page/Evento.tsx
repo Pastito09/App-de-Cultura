@@ -95,7 +95,7 @@ export const Evento = ({
             quality={100}
             alt='imagen del evento'
             src={image?.url || '/placeholder.jpg'}
-            className='w-20 h-20  rounded-sm hidden sm:block'
+            className='w-20 h-20  rounded-sm'
           />
           <div className='text-xs flex gap-4 sm:gap-0 sm:flex-col sm:text-sm/6'>
             <div>

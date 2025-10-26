@@ -4,6 +4,7 @@ import { Footer } from '../Footer';
 import EventsGrid from '@/custom-components/home-page/EventsGrid';
 import { CalendarEvent } from '@/interface/CalendarEvent.interface';
 import { EventoDB } from '@/interface/EventoDB.interface';
+import { Sidebar } from '@/custom-components/home-page/Sidebar';
 
 interface Props {
   calendarEvents: CalendarEvent[];
@@ -13,6 +14,9 @@ interface Props {
 export const HomeMovilePage = ({ calendarEvents, events }: Props) => {
   return (
     <div className='flex flex-col min-w-screen'>
+      <div>
+        <Sidebar />
+      </div>
       <div className=''>
         <EventsGrid events={events} />
       </div>

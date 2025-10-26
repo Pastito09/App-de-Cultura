@@ -10,20 +10,24 @@ export default async function EventsGrid({
 }) {
   if (events!.length === 0) {
     return (
-      <div className='bg-white pb-16 xl:h-[57vh] xl:max-h-screen min-h-full overflow-y-auto xl:pb-80 py-6 scrollbar-thin scrollbar-thumb-gray-400 hover:scrollbar-thumb-gray-500 scrollbar-track-gray-200'>
+      <div className='bg-gray-50 pb-16 xl:h-[57vh] xl:max-h-screen min-h-full overflow-y-auto xl:pb-80 py-6 scrollbar-thin scrollbar-thumb-gray-400 hover:scrollbar-thumb-gray-500 scrollbar-track-gray-200'>
         <div className='mx-auto max-w-7xl px-6 lg:px-8'>
           <div className='flex flex-col mx-auto max-w-2xl lg:mx-0'>
-            <h2 className='text-3xl mt-2 font-semibold tracking-tight text-pretty text-center  text-gray-900 md:text-5xl'>
-              No hay eventos
+            <h2 className='text-2xl mt-2 font-semibold tracking-tight text-pretty text-center  text-gray-900 lg:text-4xl'>
+              No hay eventos culturales en la agenda.
             </h2>
             <Link
               href={'/user/crear'}
-              className='mt-16 text-center hover:text-pretty  xl:mt-24'
+              className='m-8 text-center hover:text-pretty'
             >
               <span className='rounded-full p-2  bg-slate-200 text-blue-950 hover:bg-slate-300 '>
                 ¿Querés crear uno?
               </span>
             </Link>
+            <p className='text-center text-sm lg:m-8'>
+              Puede ser un recital, una fiesta, una obra de teatro,
+              una feria, o lo que quieras...
+            </p>
           </div>
         </div>
       </div>
@@ -31,7 +35,7 @@ export default async function EventsGrid({
   }
 
   return (
-    <div className='bg-white h-[57vh] xl:max-h-screen min-h-full overflow-y-auto xl:pb-80 py-6 scrollbar-thin scrollbar-thumb-gray-400 hover:scrollbar-thumb-gray-500 scrollbar-track-gray-200'>
+    <div className='bg-white h-auto sm:min-h-screen overflow-y-auto py-6 scrollbar-thin scrollbar-thumb-gray-400 hover:scrollbar-thumb-gray-500 scrollbar-track-gray-200'>
       <div className='mx-auto max-w-7xl px-6 lg:px-8'>
         <div className='mx-auto max-w-2xl lg:mx-0'>
           <h2 className='text-3xl font-semibold tracking-tight text-pretty text-center md:text-start text-gray-900 md:text-5xl'>

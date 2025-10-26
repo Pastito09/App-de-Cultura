@@ -2,9 +2,17 @@
 
 import { prisma } from '@/lib/prisma';
 
+import todayAt8UTC from '../../utils/todayAt8UTC';
+
 export const getAllEventsWithImage = async () => {
   try {
+    const today = todayAt8UTC();
     const events = await prisma.event.findMany({
+      where: {
+        eventDate: {
+          gte: today,
+        },
+      },
       include: {
         image: true,
         user: {

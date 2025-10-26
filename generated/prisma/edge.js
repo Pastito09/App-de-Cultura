@@ -202,7 +202,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\salva\\Desktop\\Agenda-Cultural-main\\generated\\prisma",
+      "value": "C:\\Users\\salva\\Desktop\\Agenda-Cultural\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -216,7 +216,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\salva\\Desktop\\Agenda-Cultural-main\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Users\\salva\\Desktop\\Agenda-Cultural\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -230,6 +230,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
