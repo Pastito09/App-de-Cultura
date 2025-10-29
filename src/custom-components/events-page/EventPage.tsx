@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 import { EventLocation } from '../ui/event-location/EventLocation';
+import { CustomTitle } from '../ui/custom-title/CustomTitle';
 
 interface EventPageProps {
   event: EventoDB;
@@ -26,6 +27,14 @@ export const EventPage = ({ event }: EventPageProps) => {
 
   const { diaDeLaSemana, dia, hs, min } =
     getDiasHoras(eventDate) || new Date();
+
+  if (!event) {
+    return (
+      <div className='bg-black min-h-screen flex items-center justify-center'>
+        <CustomTitle>No se encontró lo que buscabas</CustomTitle>{' '}
+      </div>
+    );
+  }
 
   return (
     <>
