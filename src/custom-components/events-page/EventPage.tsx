@@ -21,6 +21,7 @@ export const EventPage = ({ event }: EventPageProps) => {
     eventLocation,
     eventLocationMap,
     image,
+    startTime,
     ticketLink,
     ticketPrice,
     eventSlug,
@@ -77,7 +78,7 @@ export const EventPage = ({ event }: EventPageProps) => {
 
               <div className='mt-10'>
                 <h3 className='text-sm font-medium text-gray-400'>
-                  {diaDeLaSemana} {dia} - {hs}:{min}Hs.
+                  {startTime}Hs.
                 </h3>
                 <div className='mt-6'>
                   <EventLocation

@@ -71,7 +71,7 @@ export const Sidebar = async () => {
             ))}
       </div>
       <div className='flex flex-col justify-center items-center '>
-        <div className='h-1 border bg-slate-700 hidden lg:block w-auto' />
+        <div className='h-1 border bg-slate-700 hidden lg:block w-full' />
         <div className='my-2 hover:bg-gray-200 w-auto text-center rounded-md  bg-gray-200 lg:bg-inherit'>
           <SessionButton user={user} />
         </div>
