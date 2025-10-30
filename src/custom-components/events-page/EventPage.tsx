@@ -115,12 +115,10 @@ export const EventPage = ({ event }: EventPageProps) => {
                     >
                       {ticketPrice === '0' ? (
                         <span className='align-bottom'>
-                          'Conseguí tus entradas'
+                          Conseguí tus entradas
                         </span>
                       ) : (
-                        <span className='align-bottom'>
-                          'Comprar'
-                        </span>
+                        <span className='align-bottom'>Comprar</span>
                       )}
                     </Link>
                   ) : (
