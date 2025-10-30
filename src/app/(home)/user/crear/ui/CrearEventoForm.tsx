@@ -228,19 +228,16 @@ export const CrearEventoForm = () => {
                     </PopoverContent>
                   </Popover>
                 </div>
-                <div className='flex flex-col text-center'>
+                <div className='flex flex-col h-auto text-center'>
                   <label
                     htmlFor='startTime'
                     className='block text-sm/6 font-medium text-gray-900'
                   >
                     Horario:
                   </label>
-                  <label
-                    htmlFor='startTime'
-                    className='block text-sm font-light text-gray-500'
-                  >
+                  <span className='block text-sm font-light text-gray-400'>
                     Si el comienza a la medianoche, poné 23:59
-                  </label>
+                  </span>
                   <TimeInput register={register} />
                 </div>
                 <div className='flex flex-col text-center'>

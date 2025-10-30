@@ -101,7 +101,7 @@ export const EventPage = ({ event }: EventPageProps) => {
                   Entradas:
                 </h2>
 
-                <div className='mt-4 flex gap-4 justify-evenly items-center'>
+                <div className='mt-4 flex gap-4 items-center'>
                   <p className='text-sm m-1 text-gray-500 place-self-center'>
                     {ticketPrice !== '0'
                       ? `${ticketPrice}`
