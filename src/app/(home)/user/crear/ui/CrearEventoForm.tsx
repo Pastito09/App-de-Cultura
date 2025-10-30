@@ -8,15 +8,16 @@ import {
 } from '@/components/ui/popover';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/utils';
-import { format } from 'date-fns';
+import { format, set } from 'date-fns';
 import { CalendarIcon } from 'lucide-react';
 import { useForm, UseFormRegister, useWatch } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 import currencyFormat from '@/utils/currencyFormat';
 
-import { es } from 'date-fns/locale';
+import { es, se } from 'date-fns/locale';
 import { createEvent } from '@/actions/events/createEvent';
 import { useRouter } from 'next/navigation';
+import clsx from 'clsx';
 
 interface FormInputs {
   eventTitle: string;
@@ -35,6 +36,7 @@ interface FormInputs {
 
 export const CrearEventoForm = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isCreatingEvent, setIsCreatingEvent] = useState(false);
 
   const router = useRouter();
 
@@ -81,6 +83,8 @@ export const CrearEventoForm = () => {
   }, [register]);
 
   const onSubmitEventForm = async (data: FormInputs) => {
+    setIsCreatingEvent(true);
+
     const formData = new FormData();
 
     formData.append('eventTitle', data.eventTitle);
@@ -103,6 +107,7 @@ export const CrearEventoForm = () => {
     const { ok, prismaTx, message } = await createEvent(formData);
 
     if (!ok) {
+      setIsCreatingEvent(false);
       alert(
         'Error al crear el evento. Por favor, intenta nuevamente.'
       );
@@ -169,56 +174,6 @@ export const CrearEventoForm = () => {
             {/* Lado derecho */}
             <div className='flex flex-col col-span-1'>
               <div className='flex flex-row flex-wrap items-center justify-evenly min-w-0 gap-2'>
-                {/* <FormField
-                    control={form.control}
-                    name='eventDate'
-                    defaultValue={new Date()}
-                    render={({ field }) => (
-                      <FormItem className='flex flex-col text-center'>
-                        <FormLabel className='block text-sm/6 font-medium text-gray-900 mt-2 ms-2'>
-                          Fecha del evento:
-                        </FormLabel>
-                        <Popover>
-                          <PopoverTrigger className='' asChild>
-                            <FormControl className=''>
-                              <Button
-                                variant={'outline'}
-                                className={cn(
-                                  'm-1 h-10 font-normal',
-                                  !field.value &&
-                                    'text-muted-foreground'
-                                )}
-                              >
-                                {field.value ? (
-                                  format(field.value, 'PPP')
-                                ) : (
-                                  <span>Seleccioná una fecha</span>
-                                )}
-                                <CalendarIcon className='ml-auto h-4 w-4 opacity-50' />
-                              </Button>
-                            </FormControl>
-                          </PopoverTrigger>
-                          <PopoverContent
-                            className='w-auto p-0'
-                            align='start'
-                          >
-                            <Calendar
-                              mode='single'
-                              selected={field.value}
-                              onSelect={field.onChange}
-                              disabled={(date) =>
-                                date > new Date() ||
-                                date < new Date('1900-01-01')
-                              }
-                              initialFocus
-                            />
-                          </PopoverContent>
-                        </Popover>
-
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  /> */}
                 <div className='flex flex-col text-center'>
                   <label
                     htmlFor='eventDate'
@@ -279,6 +234,12 @@ export const CrearEventoForm = () => {
                     className='block text-sm/6 font-medium text-gray-900 mt-2'
                   >
                     Horario:
+                  </label>
+                  <label
+                    htmlFor='startTime'
+                    className='block text-sm/5 font-medium text-gray-500 mt-1'
+                  >
+                    Si el comienza a la medianoche, poné 23:59
                   </label>
                   <TimeInput register={register} />
                 </div>
@@ -415,7 +376,13 @@ export const CrearEventoForm = () => {
             <div className='col-span-1 flex justify-center md:justify-end'>
               <button
                 type='submit'
-                className='btn-primary place-self-end m-2 w-full md:w-auto'
+                className={clsx(
+                  {
+                    'btn-primary': !isCreatingEvent,
+                    'btn-disabled': isCreatingEvent,
+                  },
+                  'place-self-end m-2 w-full md:w-auto'
+                )}
               >
                 Crear evento
               </button>
@@ -456,29 +423,3 @@ function TimeInput({ register }: TimeInputProps) {
     />
   );
 }
-
-// const handleTimeChange = (
-//     e: React.ChangeEvent<HTMLInputElement>
-//   ) => {
-//     const raw = e.target.value.replace(/\D/g, '').slice(0, 4); // Solo 4 dígitos
-
-//     let hours = '00';
-//     let minutes = '00';
-
-//     if (raw.length <= 2) {
-//       hours = raw.padEnd(2, '0');
-//     } else {
-//       hours = raw.slice(0, 2);
-//       minutes = raw.slice(2).padEnd(2, '0');
-//     }
-
-//     // Limitar a valores válidos
-//     const h = Math.min(parseInt(hours, 10), 23)
-//       .toString()
-//       .padStart(2, '0');
-//     const m = Math.min(parseInt(minutes, 10), 59)
-//       .toString()
-//       .padStart(2, '0');
-
-//     setValue('startTime', `${h}:${m}`);
-//   };

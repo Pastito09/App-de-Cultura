@@ -12,12 +12,13 @@ import {
 } from '@/components/ui/popover';
 import { Button } from '@/components/ui/button';
 import { CalendarIcon } from 'lucide-react';
-import { format } from 'date-fns';
+import { format, set } from 'date-fns';
 import { cn, titleTransform } from '@/utils';
 import { Calendar } from '@/components/ui/calendar';
 import { es } from 'date-fns/locale';
 import { EventImage } from './EventImage';
 import { updateEvent } from '@/actions/events/updateEvent';
+import clsx from 'clsx';
 
 interface FormInputs {
   id: string;
@@ -47,6 +48,8 @@ interface UpdateEventoFormProps {
 export const UpdateEventoForm = ({
   evento,
 }: UpdateEventoFormProps) => {
+  const [isCreatingEvent, setIsCreatingEvent] = useState(false);
+
   const [isOpen, setIsOpen] = useState(false);
   const [newImageFile, setNewImageFile] = useState<File | null>(null);
 
@@ -118,6 +121,7 @@ export const UpdateEventoForm = ({
   }, [register]);
 
   const onSubmitEventForm = async (data: FormInputs) => {
+    setIsCreatingEvent(true);
     const formData = new FormData();
 
     formData.append('eventTitle', data.eventTitle);
@@ -146,7 +150,8 @@ export const UpdateEventoForm = ({
     );
 
     if (!ok) {
-      console.error('Error al actualizar el evento');
+      setIsCreatingEvent(false);
+      alert('Error al actualizar el evento');
       return;
     }
     router.refresh();
@@ -411,7 +416,13 @@ export const UpdateEventoForm = ({
             <div className='col-span-1 flex justify-center md:justify-end'>
               <button
                 type='submit'
-                className='btn-primary place-self-end m-2 w-full md:w-auto'
+                className={clsx(
+                  {
+                    'btn-primary': !isCreatingEvent,
+                    'btn-disabled': isCreatingEvent,
+                  },
+                  'place-self-end m-2 w-full md:w-auto'
+                )}
               >
                 Actualizar evento
               </button>
