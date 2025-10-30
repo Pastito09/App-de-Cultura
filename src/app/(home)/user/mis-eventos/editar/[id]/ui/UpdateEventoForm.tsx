@@ -271,6 +271,9 @@ export const UpdateEventoForm = ({
                   >
                     Horario:
                   </label>
+                  <span className='block text-sm font-light text-gray-400'>
+                    Si el comienza a la medianoche, poné 23:59
+                  </span>
                   <TimeInput
                     register={register}
                     startTime={evento.startTime}
@@ -460,7 +463,7 @@ function TimeInput({ register, startTime }: TimeInputProps) {
       value={time}
       onChange={handleChange}
       placeholder='HH:MM'
-      className='w-32 text-center max-w-full m-1 h-10 p-1 block rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6'
+      className='w-full text-center max-w-full m-1 h-auto p-1 block rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6'
     />
   );
 }
