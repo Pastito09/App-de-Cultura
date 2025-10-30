@@ -30,8 +30,8 @@ export const EventPage = ({ event }: EventPageProps) => {
 
   const eventUrl = `https://agendadecultura.vercel.app/${eventSlug}`;
 
-  const { diaDeLaSemana, dia, hs, min } =
-    getDiasHoras(eventDate) || new Date();
+  // const { diaDeLaSemana, dia, hs, min } =
+  //   getDiasHoras(eventDate) || new Date();
 
   if (!event) {
     return (
