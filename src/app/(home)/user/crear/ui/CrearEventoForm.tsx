@@ -231,13 +231,13 @@ export const CrearEventoForm = () => {
                 <div className='flex flex-col text-center'>
                   <label
                     htmlFor='startTime'
-                    className='block text-sm/6 font-medium text-gray-900 mt-2'
+                    className='block text-sm/6 font-medium text-gray-900'
                   >
                     Horario:
                   </label>
                   <label
                     htmlFor='startTime'
-                    className='block text-sm/5 font-medium text-gray-500 mt-1'
+                    className='block text-sm font-light text-gray-500'
                   >
                     Si el comienza a la medianoche, poné 23:59
                   </label>
@@ -419,7 +419,7 @@ function TimeInput({ register }: TimeInputProps) {
       value={time}
       onChange={handleChange}
       placeholder='HH:MM'
-      className='w-32 text-center max-w-full m-1 h-10 p-1 block rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6'
+      className='w-full text-center max-w-full m-1 h-10 p-1 block rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6'
     />
   );
 }
