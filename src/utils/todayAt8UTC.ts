@@ -1,4 +1,4 @@
-import { fromZonedTime, toZonedTime } from 'date-fns-tz';
+import { toZonedTime } from 'date-fns-tz';
 export default function todayAt8UTC(): Date {
   const timeZone = 'America/Argentina/Buenos_Aires';
 
