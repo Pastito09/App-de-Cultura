@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/popover';
 import { Button } from '@/components/ui/button';
 import { CalendarIcon } from 'lucide-react';
-import { format, set } from 'date-fns';
+import { format } from 'date-fns';
 import { cn, titleTransform } from '@/utils';
 import { Calendar } from '@/components/ui/calendar';
 import { es } from 'date-fns/locale';

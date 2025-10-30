@@ -8,13 +8,13 @@ import {
 } from '@/components/ui/popover';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/utils';
-import { format, set } from 'date-fns';
+import { format } from 'date-fns';
 import { CalendarIcon } from 'lucide-react';
 import { useForm, UseFormRegister, useWatch } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 import currencyFormat from '@/utils/currencyFormat';
 
-import { es, se } from 'date-fns/locale';
+import { es } from 'date-fns/locale';
 import { createEvent } from '@/actions/events/createEvent';
 import { useRouter } from 'next/navigation';
 import clsx from 'clsx';

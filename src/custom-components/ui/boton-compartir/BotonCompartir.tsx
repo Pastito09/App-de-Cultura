@@ -8,7 +8,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
-import { Share2, MessageCircle, Instagram, Copy } from 'lucide-react';
+import { Share2, MessageCircle, Copy } from 'lucide-react';
 import { FaInstagram } from 'react-icons/fa6';
 
 interface BotonProps {
