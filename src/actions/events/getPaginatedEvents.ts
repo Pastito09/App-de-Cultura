@@ -1,6 +1,5 @@
 'use server';
 
-import todayAt8UTC from '@/utils/todayAt8UTC';
 import { EventType } from '../../../generated/prisma/index';
 import { prisma } from '@/lib/prisma';
 
