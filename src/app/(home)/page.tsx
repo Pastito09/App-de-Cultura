@@ -1,9 +1,6 @@
 export const revalidate = 60; // seconds
 
-import {
-  getAllCalendarEvents,
-  getAllEventsWithImage,
-} from '@/actions';
+import { getAllCalendarEvents } from '@/actions';
 import { getPaginatedEvents } from '@/actions/events/getPaginatedEvents';
 import { HomeMovilePage } from '@/custom-components/ui/home-page/HomeMovilePage';
 import { HomePage } from '@/custom-components/ui/home-page/HomePage';
