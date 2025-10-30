@@ -55,29 +55,24 @@ export const Sidebar = async () => {
       <div className='flex flex-row lg:flex-col justify-evenly m-2 lg:mb-80'>
         {!user
           ? dataSidebarNotUser.map((item) => (
-              <div
-                key={item.id}
-                className='flex flex-row  hover:bg-gray-200 p-1 lg:ps-2 rounded-md m-1 bg-gray-200 lg:bg-inherit'
-              >
-                <Link href={item.url}>
+              <Link href={item.url} key={item.id}>
+                {' '}
+                <div className='flex flex-row  hover:bg-gray-200 p-1 lg:ps-2 rounded-md m-1 bg-gray-200 lg:bg-inherit'>
                   <small>{item.name}</small>
-                </Link>
-              </div>
+                </div>
+              </Link>
             ))
           : dataSidebarUser.map((item) => (
-              <div
-                key={item.id}
-                className='flex flex-row hover:bg-gray-200 p-1 ps-2 rounded-md m-1  bg-gray-200 lg:bg-inherit'
-              >
-                <Link href={item.url}>
+              <Link href={item.url} key={item.id}>
+                <div className='flex flex-row hover:bg-gray-200 p-1 ps-2 rounded-md m-1  bg-gray-200 lg:bg-inherit'>
                   <small>{item.name}</small>
-                </Link>
-              </div>
+                </div>
+              </Link>
             ))}
       </div>
       <div className='flex flex-col justify-center items-center '>
         <div className='h-1 border bg-slate-700 hidden lg:block w-auto' />
-        <div className='my-2 hover:bg-gray-200 w-3/4 text-center rounded-md  bg-gray-200 lg:bg-inherit'>
+        <div className='my-2 hover:bg-gray-200 w-auto text-center rounded-md  bg-gray-200 lg:bg-inherit'>
           <SessionButton user={user} />
         </div>
       </div>

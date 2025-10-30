@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation';
 import { UpdateEventoForm } from './ui/UpdateEventoForm';
 import EventContainer from '@/custom-components/ui/event-container/EventContainer';
 import { CustomTitle } from '@/custom-components/ui/custom-title/CustomTitle';
+import { VolverButton } from '@/custom-components';
 
 interface Props {
   params: Promise<{
@@ -30,6 +31,9 @@ export default async function EditarEventoPage({ params }: Props) {
     <EventContainer>
       <CustomTitle>Editá tu evento</CustomTitle>
       <UpdateEventoForm evento={{ ...rest }} />
+      <div className='mt-8'>
+        <VolverButton />
+      </div>
     </EventContainer>
   );
 }
