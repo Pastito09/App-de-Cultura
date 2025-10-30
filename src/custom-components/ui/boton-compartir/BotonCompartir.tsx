@@ -63,7 +63,7 @@ export default function BotonCompartir({
         <Button
           variant='outline'
           onClick={handleShareClick}
-          className='flex items-center gap-2'
+          className='flex items-center gap-2 rounded-md'
         >
           <Share2 size={18} />
           Compartir

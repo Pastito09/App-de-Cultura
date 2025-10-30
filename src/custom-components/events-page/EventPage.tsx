@@ -101,7 +101,7 @@ export const EventPage = ({ event }: EventPageProps) => {
                   Entradas:
                 </h2>
 
-                <div className='mt-4 flex gap-4'>
+                <div className='mt-4 flex gap-4 justify-evenly items-center'>
                   <p className='text-sm m-1 text-gray-500 place-self-center'>
                     {ticketPrice !== '0'
                       ? `${ticketPrice}`
@@ -113,13 +113,19 @@ export const EventPage = ({ event }: EventPageProps) => {
                       target='_blank'
                       className='bg-slate-200 ms-4 rounded-2xl p-2 hover:bg-slate-300 hover:text-cyan-900 antialiased'
                     >
-                      {ticketPrice === '0'
-                        ? 'Conseguí tus entradas'
-                        : 'Comprar'}
+                      {ticketPrice === '0' ? (
+                        <span className='align-bottom'>
+                          'Conseguí tus entradas'
+                        </span>
+                      ) : (
+                        <span className='align-bottom'>
+                          'Comprar'
+                        </span>
+                      )}
                     </Link>
                   ) : (
                     ticketPrice !== '0' && (
-                      <span className='text-gray-500'>
+                      <span className='text-gray-500 align-bottom'>
                         Se consiguen en puerta
                       </span>
                     )
