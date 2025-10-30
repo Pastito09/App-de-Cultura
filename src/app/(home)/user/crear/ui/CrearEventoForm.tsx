@@ -164,7 +164,7 @@ export const CrearEventoForm = () => {
                     'Vuelven los Cadillacs a tocar en el Luna Park después de 20 años! Todos los clásicos + invitados especiales + sorpresas!'
                   }
                   minLength={5}
-                  maxLength={400}
+                  maxLength={600}
                 />
                 <p className='mt-2 ms-2 text-sm/6 text-gray-600'>
                   Escribe una breve descripción del evento.

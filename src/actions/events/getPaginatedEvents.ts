@@ -18,70 +18,54 @@ export const getPaginatedEvents = async ({
   if (isNaN(Number(page))) page = 1;
   if (page < 1) page = 1;
   const skip = (page - 1) * take;
+
+  const now = new Date();
   const todayAt8 = todayAt8UTC();
   try {
-    const todayAt8ISO = todayAt8.toISOString();
+    const where: any = EventType ? { eventType: EventType } : {};
 
-    const where: Prisma.EventWhereInput = {
-      OR: [
-        {
-          eventDate: {
-            gt: todayAt8,
+    const events = await prisma.event.findMany({
+      where,
+      include: {
+        image: {
+          select: {
+            url: true,
+            id: true,
+            eventId: true,
+            publicId: true,
           },
         },
-        {
-          eventDate: {
-            equals: new Date(
-              todayAt8.getFullYear(),
-              todayAt8.getMonth(),
-              todayAt8.getDate()
-            ),
-          },
-          startTime: {
-            gte: todayAt8ISO.slice(11, 16),
-          },
-        },
-      ],
-      ...(EventType ? { eventType: EventType } : {}),
-    };
+        user: { select: { email: true, id: true } },
+      },
+      orderBy: { eventDate: 'asc' },
+    });
 
-    const [events, totalEvents] = await Promise.all([
-      prisma.event.findMany({
-        where,
-        include: {
-          image: {
-            select: {
-              url: true,
-              id: true,
-              eventId: true,
-              publicId: true,
-            },
-          },
-          user: {
-            select: {
-              email: true,
-              id: true,
-            },
-          },
-        },
-        orderBy: {
-          eventDate: 'asc',
-        },
-        take,
-        skip,
-      }),
-      prisma.event.count({ where }),
-    ]);
+    // 🔹 Filtramos en memoria: mostrar solo eventos que aún no terminaron (startTime + 8h)
+    const filtered = events.filter((event) => {
+      if (!event.eventDate || !event.startTime) return false;
 
+      const [hours, minutes] = event.startTime.split(':').map(Number);
+      if (isNaN(hours) || isNaN(minutes)) return false;
+
+      const eventStart = new Date(event.eventDate);
+      eventStart.setHours(hours, minutes, 0, 0);
+
+      const eventEnd = new Date(eventStart);
+      eventEnd.setHours(eventEnd.getHours() + 8); // Vigencia 8 horas desde el inicio
+
+      return eventEnd >= now; // Mostrar si todavía no terminó
+    });
+
+    // 🔹 Paginación
+    const totalEvents = filtered.length;
     const totalPages = Math.ceil(totalEvents / take);
+    const paginated = filtered.slice(skip, skip + take);
 
     return {
       ok: true,
       currentPage: page,
-      totalPages: totalPages,
-      events: events.map((event) => ({
-        ...event,
-      })),
+      totalPages,
+      events: paginated,
     };
   } catch (error) {
     console.log(error);
