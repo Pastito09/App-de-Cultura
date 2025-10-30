@@ -1,6 +1,6 @@
 'use client';
 import { EventoDB } from '@/interface/EventoDB.interface';
-import { getDiasHoras } from '@/utils/getDiasHoras';
+// import { getDiasHoras } from '@/utils/getDiasHoras';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -16,7 +16,7 @@ export const EventPage = ({ event }: EventPageProps) => {
   const {
     eventTitle,
     eventDescription,
-    eventDate = new Date(),
+    // eventDate = new Date(),
     eventLocationName,
     eventLocation,
     eventLocationMap,
