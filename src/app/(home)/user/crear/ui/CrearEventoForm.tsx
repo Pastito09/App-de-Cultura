@@ -236,7 +236,7 @@ export const CrearEventoForm = () => {
                     Horario:
                   </label>
                   <span className='block text-sm font-light text-gray-400'>
-                    Si el comienza a la medianoche, poné 23:59
+                    Si comienza a la medianoche, poné 23:59
                   </span>
                   <TimeInput register={register} />
                 </div>
