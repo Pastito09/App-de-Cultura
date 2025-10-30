@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 
 import { EventLocation } from '../ui/event-location/EventLocation';
 import { CustomTitle } from '../ui/custom-title/CustomTitle';
+import BotonCompartir from '../ui/boton-compartir/BotonCompartir';
 
 interface EventPageProps {
   event: EventoDB;
@@ -22,8 +23,11 @@ export const EventPage = ({ event }: EventPageProps) => {
     image,
     ticketLink,
     ticketPrice,
+    eventSlug,
   } = event;
   const router = useRouter();
+
+  const eventUrl = `https://agendadecultura.vercel.app/${eventSlug}`;
 
   const { diaDeLaSemana, dia, hs, min } =
     getDiasHoras(eventDate) || new Date();
@@ -120,6 +124,7 @@ export const EventPage = ({ event }: EventPageProps) => {
                       </span>
                     )
                   )}
+                  <BotonCompartir title={eventTitle} url={eventUrl} />
 
                   {/* {ticketLink && ticketPrice !== '0' ? (
                     <Link
