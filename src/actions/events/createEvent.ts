@@ -17,8 +17,7 @@ const formSchema = z.object({
     .string({
       required_error: 'La descripción del evento es requerida',
     })
-    .min(5)
-    .max(200),
+    .min(5),
   eventDate: z.coerce.date({
     required_error: 'La fecha del evento es requerida',
     invalid_type_error:
