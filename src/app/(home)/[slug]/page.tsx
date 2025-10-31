@@ -13,7 +13,7 @@ export default async function EventoPage({
 
   const { ok, evento, message } = await getEventBySlugWithImage(slug);
 
-  if (!ok) {
+  if (!ok && !evento) {
     return (
       <div>
         <span>Evento no encontrado</span>
