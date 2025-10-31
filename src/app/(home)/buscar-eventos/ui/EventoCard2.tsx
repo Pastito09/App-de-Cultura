@@ -42,18 +42,25 @@ export const EventoCard2 = ({
   };
 
   return (
-    <Link href={eventSlug} className='block'>
+    <Link href={eventSlug} target='_blank' rel='noopener noreferrer'>
       <article className='flex flex-col border h-full w-full  bg-slate-50 rounded-xl px-2 pb-1'>
         <div className='flex flex-row '>
-          <Image
-            width={150}
-            height={500}
-            quality={100}
-            priority
-            alt='imagen del evento'
-            src={image?.url || '/placeholder.jpg'}
-            className='rounded-sm pt-1 hidden sm:block w-full'
-          />
+          <Link
+            href={eventSlug}
+            target='_blank'
+            rel='noopener noreferrer'
+            className='block'
+          >
+            <Image
+              width={150}
+              height={500}
+              quality={100}
+              priority
+              alt='imagen del evento'
+              src={image?.url || '/placeholder.jpg'}
+              className='rounded-sm pt-1 hidden sm:block w-full'
+            />
+          </Link>
 
           <div className='flex flex-col w-full'>
             <div className='flex md:flex-row ms-6 mb-1 items-center justify-between gap-x-4 text-xs'>
@@ -90,7 +97,11 @@ export const EventoCard2 = ({
             </div>
 
             <div>
-              <Link href={eventSlug}>
+              <Link
+                href={eventSlug}
+                target='_blank'
+                rel='noopener noreferrer'
+              >
                 <h3 className=' md:ms-3 sm:text-2xl font-semibold text-center md:text-start  text-gray-900 group-hover:text-gray-600'>
                   <span>
                     <span className='inset-0' />
@@ -116,6 +127,7 @@ export const EventoCard2 = ({
                   <Link
                     href={ticketLink!}
                     target='_blank'
+                    rel='noopener noreferrer'
                     className='bg-slate-200 ms-4 rounded-2xl p-2 hover:bg-slate-300 hover:text-cyan-900 antialiased'
                   >
                     {ticketPrice === '0'

@@ -61,7 +61,7 @@ export default async function BuscarEventosPage({
           <PaginationEvent totalPages={totalPages} />
         </div>
       </div>
-      <div className='flex justify-center nmt-10'>
+      <div className='flex justify-center my-10'>
         <VolverButton />
       </div>
     </EventContainer>
