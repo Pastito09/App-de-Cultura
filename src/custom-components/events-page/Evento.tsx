@@ -1,3 +1,4 @@
+'use client';
 import { EventoDB } from '@/interface/EventoDB.interface';
 import { getDiasHoras } from '@/utils/getDiasHoras';
 import Image from 'next/image';
