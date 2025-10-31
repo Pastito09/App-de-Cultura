@@ -92,19 +92,17 @@ export default function BotonCompartir({
 
     const id = toast.custom(() => (
       <div className='rounded-md bg-white shadow px-4 py-3 text-sm flex flex-col gap-1'>
-        <strong>Enlace copiado ✅</strong>
+        <strong>Enlace copiado ✅ Pegalo en tu mensaje</strong>
         <span>Abriendo Instagram en {seconds}…</span>
       </div>
     ));
 
     const interval = setInterval(() => {
       seconds -= 1;
-
-      // Actualizar el contenido del toast
       toast.custom(
         () => (
           <div className='rounded-md bg-white shadow px-4 py-3 text-sm flex flex-col gap-1'>
-            <strong>Enlace copiado ✅</strong>
+            <strong>Enlace copiado ✅ Pegalo en tu mensaje</strong>
             <span>Abriendo Instagram en {seconds}…</span>
           </div>
         ),
@@ -115,11 +113,9 @@ export default function BotonCompartir({
         clearInterval(interval);
         toast.dismiss(id);
 
-        // abrir instagram
         if (isMobile) {
           window.location.href = `instagram://app`;
 
-          // fallback si la app no abre
           setTimeout(() => {
             window.open('https://www.instagram.com/', '_blank');
           }, 600);
