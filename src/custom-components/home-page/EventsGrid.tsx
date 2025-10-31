@@ -35,7 +35,7 @@ export default async function EventsGrid({
   }
 
   return (
-    <div className='bg-white lg:h-auto h-[65%] overflow-y-auto py-6 scrollbar-thin scrollbar-thumb-gray-400 hover:scrollbar-thumb-gray-500 scrollbar-track-gray-200'>
+    <div className='bg-white h-auto lg:h-screen overflow-y-auto py-6 scrollbar-thin scrollbar-thumb-gray-400 hover:scrollbar-thumb-gray-500 scrollbar-track-gray-200'>
       <div className='mx-auto max-w-7xl px-6 lg:px-8'>
         <div className='mx-auto max-w-2xl lg:mx-0'>
           <h2 className='text-3xl font-semibold tracking-tight text-pretty text-center md:text-start text-gray-900 md:text-5xl'>

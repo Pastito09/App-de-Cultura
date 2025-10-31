@@ -4,19 +4,19 @@ export const getDiasHoras = (date: Date) => {
     .getMinutes()
     .toString()
     .padStart(2, '0');
-  const dia = date.toLocaleDateString();
-  const nombreDia = (date: Date) => {
-    const elDiaEs = new Intl.DateTimeFormat('es-ES', {
+  const dia = date.toLocaleDateString('es-AR', {
+    day: '2-digit',
+    month: '2-digit',
+    year: '2-digit',
+  });
+  const nombreDia = String(
+    new Intl.DateTimeFormat('es-ES', {
       weekday: 'long',
-    }).format(date);
-
-    return elDiaEs.charAt(0).toUpperCase() + elDiaEs.slice(1);
-  };
-
-  const diaDeLaSemana = nombreDia(date);
+    }).format(date)
+  ).replace(/^./, (letra) => letra.toUpperCase());
 
   return {
-    diaDeLaSemana,
+    diaDeLaSemana: nombreDia,
     dia,
     hs,
     min,

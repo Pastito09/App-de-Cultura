@@ -45,7 +45,6 @@ export const CustomCalendar = ({
   return (
     <Calendar
       mode='single'
-      fromDate={today}
       defaultMonth={currentMonth}
       locale={es}
       weekStartsOn={0}

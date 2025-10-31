@@ -1,6 +1,6 @@
 'use client';
 import { EventoDB } from '@/interface/EventoDB.interface';
-// import { getDiasHoras } from '@/utils/getDiasHoras';
+
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -8,6 +8,7 @@ import { EventLocation } from '../ui/event-location/EventLocation';
 import { CustomTitle } from '../ui/custom-title/CustomTitle';
 import BotonCompartir from '../ui/boton-compartir/BotonCompartir';
 import { VolverButton } from '../ui/volver-button/VolverButton';
+import { getDiasHoras } from '@/utils';
 
 interface EventPageProps {
   event: EventoDB;
@@ -16,7 +17,7 @@ export const EventPage = ({ event }: EventPageProps) => {
   const {
     eventTitle,
     eventDescription,
-    // eventDate = new Date(),
+    eventDate = new Date(),
     eventLocationName,
     eventLocation,
     eventLocationMap,
@@ -29,8 +30,8 @@ export const EventPage = ({ event }: EventPageProps) => {
 
   const eventUrl = `https://agendadecultura.vercel.app/${eventSlug}`;
 
-  // const { diaDeLaSemana, dia, hs, min } =
-  //   getDiasHoras(eventDate) || new Date();
+  const { diaDeLaSemana, dia } =
+    getDiasHoras(eventDate) || new Date();
 
   if (!event) {
     return (
@@ -77,7 +78,7 @@ export const EventPage = ({ event }: EventPageProps) => {
 
               <div className='mt-10'>
                 <h3 className='text-sm font-medium text-gray-400'>
-                  {startTime}Hs.
+                  {diaDeLaSemana} - {dia} - {startTime}Hs.
                 </h3>
                 <div className='mt-6'>
                   <EventLocation
