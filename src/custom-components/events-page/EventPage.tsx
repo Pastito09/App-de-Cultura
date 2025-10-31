@@ -147,7 +147,7 @@ export const EventPage = ({ event }: EventPageProps) => {
             </div>
           </div>
         </div>
-        <div className='flex justify-center items-center text-slate-700 bg-slate-50 font-semibold hover:bg-slate-200 antialiased'>
+        <div className='flex justify-center items-center text-slate-50 bg-inherit font-semibold antialiased'>
           <VolverButton />
         </div>
       </div>
