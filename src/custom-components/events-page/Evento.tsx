@@ -39,8 +39,8 @@ export const Evento = ({
   };
 
   return (
-    <article className='flex flex-col items-start border bg-slate-50 rounded-xl px-2 pb-1'>
-      <Link href={eventSlug}>
+    <Link href={eventSlug}>
+      <article className='flex flex-col items-start border bg-slate-50 rounded-xl px-2 pb-1'>
         <div className='flex flex-row w-full justify-between items-center me-2 text-xs'>
           <div>
             <span className='font-semibold tracking-wide text-blue-900'>
@@ -63,8 +63,6 @@ export const Evento = ({
           </div>
           <div>{tipoDeEvento(eventType)}</div>
         </div>
-      </Link>
-      <Link href={eventSlug}>
         <div className='group'>
           <h3 className='mt-2 mb-1 ms-3 sm:text-2xl font-semibold text-start  text-gray-900 group-hover:text-gray-600'>
             <span>
@@ -76,11 +74,7 @@ export const Evento = ({
             {eventDescription}
           </p>
         </div>
-      </Link>
-
-      <div className='flex items-center mt-2 gap-x-4 w-full'>
-        <Link href={eventSlug}>
-          {' '}
+        <div className='flex items-center mt-2 gap-x-4 w-full'>
           <div className='flex items-center gap-x-4'>
             <Image
               width={400}
@@ -98,13 +92,16 @@ export const Evento = ({
               <p className='text-gray-600'>{eventLocationName}</p>
             </div>
           </div>
-        </Link>
-        {/* 👉 Botón alineado a la derecha y centrado verticalmente */}
-        <div className='ml-auto flex items-center'>
-          <BotonCompartir />
+
+          <div
+            className='ml-auto flex items-center'
+            onClick={(e) => e.stopPropagation()}
+          >
+            <BotonCompartir />
+          </div>
         </div>
-      </div>
-    </article>
+      </article>
+    </Link>
   );
 };
 {
