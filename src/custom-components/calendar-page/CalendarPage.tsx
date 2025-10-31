@@ -60,7 +60,7 @@ export const CalendarPage = ({
     <div className='flex flex-col items-center m-4'>
       <Referencias />
 
-      <div className='grid grid-cols-1 2xl:grid-cols-3 gap-3 2xl:gap-2 justify-center'>
+      <div className='grid grid-cols-1 2xl:grid-cols-3 lg:grid-cols-2 gap-3 2xl:gap-2 justify-center'>
         <CustomCalendar
           monthOffset={0}
           today={today}
