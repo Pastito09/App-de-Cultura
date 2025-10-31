@@ -98,7 +98,9 @@ export const Evento = ({
             className='ml-auto flex items-center'
             onClick={(e) => e.stopPropagation()}
           >
-            <BotonCompartir />
+            <BotonCompartir
+              url={`https://agendadecultura.vercel.app/${eventSlug}`}
+            />
           </div>
         </div>
       </article>
