@@ -10,6 +10,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Share2, MessageCircle, Copy } from 'lucide-react';
 import { FaInstagram } from 'react-icons/fa6';
+import Link from 'next/link';
 
 interface BotonProps {
   url?: string;
@@ -72,7 +73,7 @@ export default function BotonCompartir({
 
       <DropdownMenuContent align='end'>
         <DropdownMenuItem asChild>
-          <a
+          <Link
             href={`https://api.whatsapp.com/send?text=${encodeURIComponent(
               `${text} ${currentUrl}`
             )}`}
@@ -82,11 +83,11 @@ export default function BotonCompartir({
           >
             <MessageCircle size={16} />
             WhatsApp
-          </a>
+          </Link>
         </DropdownMenuItem>
 
         <DropdownMenuItem asChild>
-          <a
+          <Link
             href={`https://www.instagram.com/?url=${encodeURIComponent(
               currentUrl
             )}`}
@@ -96,7 +97,7 @@ export default function BotonCompartir({
           >
             <FaInstagram size={16} />
             Instagram
-          </a>
+          </Link>
         </DropdownMenuItem>
 
         <DropdownMenuItem
