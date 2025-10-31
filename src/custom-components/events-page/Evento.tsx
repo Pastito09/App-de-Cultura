@@ -6,6 +6,7 @@ import { IoLocationSharp, IoMusicalNotes } from 'react-icons/io5';
 import { FaCalendar, FaMasksTheater } from 'react-icons/fa6';
 import { BiParty } from 'react-icons/bi';
 import { GiPartyFlags } from 'react-icons/gi';
+import BotonCompartir from '../ui/boton-compartir/BotonCompartir';
 
 export const Evento = ({
   eventTitle,
@@ -92,6 +93,9 @@ export const Evento = ({
             <div>
               <p className='text-gray-600'>{eventLocationName}</p>
             </div>
+          </div>
+          <div className='place-self-end'>
+            <BotonCompartir />
           </div>
         </div>
       </article>
