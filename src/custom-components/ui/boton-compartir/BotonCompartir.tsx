@@ -10,6 +10,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Share2, MessageCircle, Copy } from 'lucide-react';
 import { FaInstagram } from 'react-icons/fa6';
+import { toast } from 'sonner';
 import Link from 'next/link';
 
 interface BotonProps {
@@ -44,9 +45,33 @@ export default function BotonCompartir({
   const copyToClipboard = async () => {
     try {
       await navigator.clipboard.writeText(currentUrl);
-      alert('Enlace copiado al portapapeles');
+      toast('Enlace copiado al portapapeles');
     } catch (error) {
+      toast('No se pudo copiar el enlace.');
       console.error('Error al copiar al portapapeles:', error);
+    }
+  };
+
+  const handleInstagramShare = async () => {
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(
+      navigator.userAgent
+    );
+
+    try {
+      await navigator.clipboard.writeText(currentUrl);
+      toast('Enlace copiado ✅ Pegalo en tu mensaje en Instagram.');
+    } catch {
+      toast.error('No se pudo copiar automáticamente.');
+    }
+
+    if (isMobile) {
+      window.location.href = `instagram://app`;
+
+      setTimeout(() => {
+        window.open('https://www.instagram.com/', '_blank');
+      }, 400);
+    } else {
+      window.open('https://www.instagram.com/', '_blank');
     }
   };
 
@@ -86,18 +111,12 @@ export default function BotonCompartir({
           </Link>
         </DropdownMenuItem>
 
-        <DropdownMenuItem asChild>
-          <Link
-            href={`https://www.instagram.com/?url=${encodeURIComponent(
-              currentUrl
-            )}`}
-            target='_blank'
-            rel='noopener noreferrer'
-            className='flex items-center gap-2'
-          >
-            <FaInstagram size={16} />
-            Instagram
-          </Link>
+        <DropdownMenuItem
+          onClick={handleInstagramShare}
+          className='flex items-center gap-2'
+        >
+          <FaInstagram size={16} />
+          Instagram
         </DropdownMenuItem>
 
         <DropdownMenuItem
