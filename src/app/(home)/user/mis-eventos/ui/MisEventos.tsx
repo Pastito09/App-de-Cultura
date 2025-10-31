@@ -44,7 +44,7 @@ export const MisEventos = async ({ userId }: Props) => {
         <thead className='bg-gray-100/55'>
           <tr>
             <th className='p-2 text-center w-[15%]'>Título</th>
-            <th className='p-2 text-center w-auto max-w-[350px]'>
+            <th className='p-2 text-center w-auto max-w-[450px]'>
               Descripción
             </th>
             <th className='p-2 text-center w-[15%]'>Fecha</th>
@@ -61,8 +61,8 @@ export const MisEventos = async ({ userId }: Props) => {
             return (
               <tr key={event.id} className='border-t align-top'>
                 <td className='p-2'>{event.eventTitle}</td>
-                <td className='p-2 w-auto max-w-[350px]'>
-                  <div className='line-clamp-3 break-words whitespace-pre-line'>
+                <td className='p-2 w-auto max-w-[450px]'>
+                  <div className='line-clamp-2 break-words whitespace-pre-line'>
                     {event.eventDescription}
                   </div>
                 </td>
