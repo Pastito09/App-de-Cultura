@@ -3,7 +3,6 @@ import { EventoDB } from '@/interface/EventoDB.interface';
 // import { getDiasHoras } from '@/utils/getDiasHoras';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 
 import { EventLocation } from '../ui/event-location/EventLocation';
 import { CustomTitle } from '../ui/custom-title/CustomTitle';
@@ -27,7 +26,6 @@ export const EventPage = ({ event }: EventPageProps) => {
     ticketPrice,
     eventSlug,
   } = event;
-  const router = useRouter();
 
   const eventUrl = `https://agendadecultura.vercel.app/${eventSlug}`;
 
