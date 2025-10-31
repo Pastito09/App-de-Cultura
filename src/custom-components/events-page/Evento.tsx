@@ -74,7 +74,36 @@ export const Evento = ({
             {eventDescription}
           </p>
         </div>
-        <div className='flex items-center mt-2 gap-x-4'>
+        <div className='flex items-center mt-2 gap-x-4 w-full'>
+          <div className='flex items-center gap-x-4'>
+            <Image
+              width={400}
+              height={400}
+              quality={100}
+              alt='imagen del evento'
+              src={image?.url || '/placeholder.jpg'}
+              className='w-20 h-20 rounded-sm'
+            />
+            <div className='text-xs flex gap-4 sm:gap-0 sm:flex-col sm:text-sm/6'>
+              <p className='font-semibold text-gray-900'>
+                {eventLocation}
+              </p>
+              <div className='block sm:hidden'>-</div>
+              <p className='text-gray-600'>{eventLocationName}</p>
+            </div>
+          </div>
+
+          {/* 👉 Botón alineado a la derecha y centrado verticalmente */}
+          <div className='ml-auto flex items-center'>
+            <BotonCompartir />
+          </div>
+        </div>
+      </article>
+    </Link>
+  );
+};
+{
+  /* <div className='flex items-center mt-2 gap-x-4'>
           <Image
             width={400}
             height={400}
@@ -94,11 +123,8 @@ export const Evento = ({
               <p className='text-gray-600'>{eventLocationName}</p>
             </div>
           </div>
-          <div className='place-self-end'>
+          <div className='aling-center'>
             <BotonCompartir />
           </div>
-        </div>
-      </article>
-    </Link>
-  );
-};
+        </div> */
+}
