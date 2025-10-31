@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { EventLocation } from '../ui/event-location/EventLocation';
 import { CustomTitle } from '../ui/custom-title/CustomTitle';
 import BotonCompartir from '../ui/boton-compartir/BotonCompartir';
+import { VolverButton } from '../ui/volver-button/VolverButton';
 
 interface EventPageProps {
   event: EventoDB;
@@ -148,15 +149,8 @@ export const EventPage = ({ event }: EventPageProps) => {
             </div>
           </div>
         </div>
-        <div className='flex justify-center items-center'>
-          <button
-            onClick={() => router.back()}
-            type='button'
-            aria-label='Volver'
-            className='text-slate-700 bg-slate-50 font-semibold hover:bg-slate-200 rounded-2xl p-2 antialiased'
-          >
-            Volver
-          </button>
+        <div className='flex justify-center items-center text-slate-700 bg-slate-50 font-semibold hover:bg-slate-200 antialiased'>
+          <VolverButton />
         </div>
       </div>
     </>
