@@ -45,35 +45,13 @@ export default function BotonCompartir({
   const copyToClipboard = async () => {
     try {
       await navigator.clipboard.writeText(currentUrl);
-      toast('Enlace copiado al portapapeles');
+      toast('Enlace copiado al portapapeles ✅');
     } catch (error) {
       toast.error('No se pudo copiar el enlace.');
       console.error('Error al copiar al portapapeles:', error);
     }
   };
 
-  // const handleInstagramShare = async () => {
-  //   const isMobile = /Android|iPhone|iPad|iPod/i.test(
-  //     navigator.userAgent
-  //   );
-
-  //   try {
-  //     await navigator.clipboard.writeText(currentUrl);
-  //     toast('Enlace copiado ✅ Pegalo en tu mensaje en Instagram.');
-  //   } catch {
-  //     toast.error('No se pudo copiar automáticamente.');
-  //   }
-
-  //   if (isMobile) {
-  //     window.location.href = `instagram://app`;
-
-  //     setTimeout(() => {
-  //       window.open('https://www.instagram.com/', '_blank');
-  //     }, 400);
-  //   } else {
-  //     window.open('https://www.instagram.com/', '_blank');
-  //   }
-  // };
   const handleInstagramShare = async () => {
     const isMobile = /Android|iPhone|iPad|iPod/i.test(
       navigator.userAgent
