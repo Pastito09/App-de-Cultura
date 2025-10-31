@@ -62,7 +62,7 @@ export const MisEventos = async ({ userId }: Props) => {
               <tr key={event.id} className='border-t align-top'>
                 <td className='p-2'>{event.eventTitle}</td>
                 <td className='p-2 w-auto max-w-[350px]'>
-                  <div className='break-words whitespace-pre-line'>
+                  <div className='line-clamp-3 break-words whitespace-pre-line'>
                     {event.eventDescription}
                   </div>
                 </td>
