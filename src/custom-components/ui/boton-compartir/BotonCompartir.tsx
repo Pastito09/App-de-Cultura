@@ -47,11 +47,33 @@ export default function BotonCompartir({
       await navigator.clipboard.writeText(currentUrl);
       toast('Enlace copiado al portapapeles');
     } catch (error) {
-      toast('No se pudo copiar el enlace.');
+      toast.error('No se pudo copiar el enlace.');
       console.error('Error al copiar al portapapeles:', error);
     }
   };
 
+  // const handleInstagramShare = async () => {
+  //   const isMobile = /Android|iPhone|iPad|iPod/i.test(
+  //     navigator.userAgent
+  //   );
+
+  //   try {
+  //     await navigator.clipboard.writeText(currentUrl);
+  //     toast('Enlace copiado ✅ Pegalo en tu mensaje en Instagram.');
+  //   } catch {
+  //     toast.error('No se pudo copiar automáticamente.');
+  //   }
+
+  //   if (isMobile) {
+  //     window.location.href = `instagram://app`;
+
+  //     setTimeout(() => {
+  //       window.open('https://www.instagram.com/', '_blank');
+  //     }, 400);
+  //   } else {
+  //     window.open('https://www.instagram.com/', '_blank');
+  //   }
+  // };
   const handleInstagramShare = async () => {
     const isMobile = /Android|iPhone|iPad|iPod/i.test(
       navigator.userAgent
@@ -59,20 +81,53 @@ export default function BotonCompartir({
 
     try {
       await navigator.clipboard.writeText(currentUrl);
-      toast('Enlace copiado ✅ Pegalo en tu mensaje en Instagram.');
     } catch {
-      toast.error('No se pudo copiar automáticamente.');
+      toast.error(
+        'No se pudo copiar automáticamente. Copialo manualmente.'
+      );
+      return;
     }
 
-    if (isMobile) {
-      window.location.href = `instagram://app`;
+    let seconds = 3;
 
-      setTimeout(() => {
-        window.open('https://www.instagram.com/', '_blank');
-      }, 400);
-    } else {
-      window.open('https://www.instagram.com/', '_blank');
-    }
+    const id = toast.custom(() => (
+      <div className='rounded-md bg-white shadow px-4 py-3 text-sm flex flex-col gap-1'>
+        <strong>Enlace copiado ✅</strong>
+        <span>Abriendo Instagram en {seconds}…</span>
+      </div>
+    ));
+
+    const interval = setInterval(() => {
+      seconds -= 1;
+
+      // Actualizar el contenido del toast
+      toast.custom(
+        () => (
+          <div className='rounded-md bg-white shadow px-4 py-3 text-sm flex flex-col gap-1'>
+            <strong>Enlace copiado ✅</strong>
+            <span>Abriendo Instagram en {seconds}…</span>
+          </div>
+        ),
+        { id }
+      );
+
+      if (seconds <= 0) {
+        clearInterval(interval);
+        toast.dismiss(id);
+
+        // abrir instagram
+        if (isMobile) {
+          window.location.href = `instagram://app`;
+
+          // fallback si la app no abre
+          setTimeout(() => {
+            window.open('https://www.instagram.com/', '_blank');
+          }, 600);
+        } else {
+          window.open('https://www.instagram.com/', '_blank');
+        }
+      }
+    }, 1000);
   };
 
   const handleShareClick = () => {
