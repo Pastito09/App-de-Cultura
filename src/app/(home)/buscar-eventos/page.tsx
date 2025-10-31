@@ -6,6 +6,7 @@ import { getPaginatedEvents } from '@/actions/events/getPaginatedEvents';
 import { PaginationEvent } from '@/custom-components/ui/pagination/PaginationEvent';
 import { EventType } from '../../../../generated/prisma';
 import { EventTypeFilter } from '@/custom-components/ui/event-type-filter/EventTypeFilter';
+import { VolverButton } from '@/custom-components';
 
 interface Props {
   searchParams: Promise<{
@@ -59,6 +60,9 @@ export default async function BuscarEventosPage({
         <div className='flex justify-center p-4 mt-4 mb-20'>
           <PaginationEvent totalPages={totalPages} />
         </div>
+      </div>
+      <div className='flex justify-center nmt-10'>
+        <VolverButton />
       </div>
     </EventContainer>
   );
