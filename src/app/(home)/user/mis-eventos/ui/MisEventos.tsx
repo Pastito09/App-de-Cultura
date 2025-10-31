@@ -40,15 +40,17 @@ export const MisEventos = async ({ userId }: Props) => {
   return (
     <div className='flex flex-col items-center rounded-md w-full min-w-full px-2 bg-emerald-50/50 min-h-screen'>
       <CustomTitle>Mis Eventos:</CustomTitle>
-      <table className='min-w-full border rounded border-gray-300 text-sm m-8'>
+      <table className='table-auto w-full border rounded border-gray-300 text-sm m-8'>
         <thead className='bg-gray-100/55'>
           <tr>
-            <th className='p-2 text-center'>Título</th>
-            <th className='p-2 text-center'>Descripción</th>
-            <th className='p-2 text-center'>Fecha</th>
-            <th className='p-2 text-center'>Lugar</th>
-            <th className='p-2 text-center'>Hora</th>
-            <th className='p-2 text-center'>Acciones</th>
+            <th className='p-2 text-center w-[15%]'>Título</th>
+            <th className='p-2 text-center w-auto max-w-[350px]'>
+              Descripción
+            </th>
+            <th className='p-2 text-center w-[15%]'>Fecha</th>
+            <th className='p-2 text-center w-[15%]'>Lugar</th>
+            <th className='p-2 text-center w-[10%]'>Hora</th>
+            <th className='p-2 text-center w-[20%]'>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -57,10 +59,12 @@ export const MisEventos = async ({ userId }: Props) => {
               event.eventDate
             );
             return (
-              <tr key={event.id} className='border-t'>
+              <tr key={event.id} className='border-t align-top'>
                 <td className='p-2'>{event.eventTitle}</td>
-                <td className='p-2 line-clamp-2 w-full'>
-                  {event.eventDescription}
+                <td className='p-2 w-auto max-w-[350px]'>
+                  <div className='break-words whitespace-pre-line'>
+                    {event.eventDescription}
+                  </div>
                 </td>
                 <td className='p-2 text-center'>
                   {diaDeLaSemana}, {dia}
@@ -78,10 +82,6 @@ export const MisEventos = async ({ userId }: Props) => {
                       Editar
                     </Link>
                     <DeleteEventButton eventId={event.id} />{' '}
-                    {/* Uncomment the following line if you want to add a delete button */}
-                    {/* <button className='text-red-600 hover:underline'>
-                      Eliminar
-                    </button> */}
                     <Link
                       href={`/${event.eventSlug}`}
                       rel='noopener noreferrer'

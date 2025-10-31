@@ -71,7 +71,9 @@ export const EventPage = ({ event }: EventPageProps) => {
 
                 <div className='space-y-6'>
                   <p className='text-base text-gray-400'>
-                    {eventDescription}
+                    <div className='break-words whitespace-pre-line'>
+                      {event.eventDescription}
+                    </div>
                   </p>
                 </div>
               </div>
