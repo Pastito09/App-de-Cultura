@@ -14,13 +14,13 @@ import { toast } from 'sonner';
 import Link from 'next/link';
 
 interface BotonProps {
-  url?: string;
+  eventSlug?: string;
   title?: string;
   text?: string;
 }
 
 export default function BotonCompartir({
-  url,
+  eventSlug,
   title = 'Mirá este evento cultural 👀',
   text = 'Quería compartirlo con vos',
 }: BotonProps) {
@@ -28,14 +28,15 @@ export default function BotonCompartir({
   const [currentUrl, setCurrentUrl] = useState('');
 
   useEffect(() => {
-    if (url) {
-      setCurrentUrl(url);
-    } else if (typeof window !== 'undefined') {
-      setCurrentUrl(window.location.href);
+    if (typeof window !== 'undefined') {
+      const origin = window.location.origin;
+      setCurrentUrl(`${origin}${eventSlug}`);
     } else {
-      setCurrentUrl('');
+      setCurrentUrl(
+        `${process.env.NEXT_PUBLIC_SITE_URL}/${eventSlug}`
+      );
     }
-  }, [url]);
+  }, [eventSlug]);
 
   const handleNativeShare = async () => {
     if (!currentUrl) return;
@@ -89,7 +90,7 @@ export default function BotonCompartir({
     let seconds = 3;
 
     const id = toast.custom(() => (
-      <div className='rounded-md bg-white shadow px-4 py-3 text-sm flex flex-col gap-1'>
+      <div className='rounded-md bg-white shadow px-4 py-3 mb-1 text-sm flex flex-col gap-1'>
         <strong>Enlace copiado ✅ pegalo en tu mensaje</strong>
         <span>Abriendo Instagram en {seconds}…</span>
       </div>
@@ -100,7 +101,7 @@ export default function BotonCompartir({
 
       toast.custom(
         () => (
-          <div className='rounded-md bg-white shadow px-4 py-3 text-sm flex flex-col gap-1'>
+          <div className='rounded-md bg-white shadow px-4 py-3 mb-1 text-sm flex flex-col gap-1'>
             <strong>Enlace copiado ✅ pegalo en tu mensaje</strong>
             <span>Abriendo Instagram en {seconds}…</span>
           </div>
@@ -143,8 +144,8 @@ export default function BotonCompartir({
           onClick={handleShareClick}
           className='flex items-center gap-2 rounded-md'
         >
-          <Share2 size={18} />
-          Compartir
+          <Share2 className='w-4 h-4 sm:w-[18px] sm:h-[18px]' />
+          <span className='hidden sm:block text-sm'>Compartir</span>
         </Button>
       </DropdownMenuTrigger>
 

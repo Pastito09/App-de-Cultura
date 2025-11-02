@@ -1,3 +1,5 @@
+'use client';
+
 import { EventoDB } from '@/interface/EventoDB.interface';
 import { getDiasHoras } from '@/utils/getDiasHoras';
 import Image from 'next/image';
@@ -7,6 +9,7 @@ import { FaCalendar, FaMasksTheater } from 'react-icons/fa6';
 import { BiParty } from 'react-icons/bi';
 import { GiPartyFlags } from 'react-icons/gi';
 import { EventLocation } from '@/custom-components/ui/event-location/EventLocation';
+import BotonCompartir from '@/custom-components/ui/boton-compartir/BotonCompartir';
 
 export const EventoCard2 = ({
   eventTitle,
@@ -73,19 +76,7 @@ export const EventoCard2 = ({
               >
                 {dia || 'sin fecha'} - {startTime}Hs.
               </time>
-              {/* <Link href={eventGoogleMaps || eventSlug}>
-              <div className='flex flex-row gap-1 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100'>
-                <IoLocationSharp className='mt-0.5 hidden md:block' />
 
-                <p className='md:font-semibold text-center font-normal text-gray-900'>
-                  {eventLocation}
-                </p>
-                <div className='place-self-center'> - </div>
-                <p className='text-gray-600 text-center'>
-                  {eventLocationName}
-                </p>
-              </div>
-            </Link> */}
               <EventLocation
                 eventLocation={eventLocation}
                 eventLocationMap={eventLocationMap}
@@ -109,32 +100,44 @@ export const EventoCard2 = ({
                   </p>
                 </div>
               </Link>
-              <div className='flex gap-8 ms-5 items-center mt-2'>
-                <h2 className='text-sm font-medium text-gray-500'>
-                  Entradas:
-                </h2>
+              <div className='flex gap-4 ms-5 items-center mt-2'>
+                <div className='flex items-center gap3 flex-wrap'>
+                  <h2 className='text-sm font-medium text-gray-500'>
+                    Entradas:
+                  </h2>
 
-                <p className='text-sm m-1 text-gray-500 place-self-center'>
-                  {ticketPrice !== '0' ? ` ${ticketPrice}` : '$ 0.00'}
-                </p>
+                  <p className='text-sm m-1 text-gray-500 place-self-center'>
+                    {ticketPrice !== '0'
+                      ? ` ${ticketPrice}`
+                      : '$ 0.00'}
+                  </p>
 
-                {ticketLink ? (
-                  <Link
-                    href={ticketLink!}
-                    rel='noopener noreferrer'
-                    className='bg-slate-200 ms-4 rounded-2xl p-2 hover:bg-slate-300 hover:text-cyan-900 antialiased'
-                  >
-                    {ticketPrice === '0'
-                      ? 'Conseguí tus entradas'
-                      : 'Comprar'}
-                  </Link>
-                ) : (
-                  ticketPrice !== '0' && (
-                    <span className='text-gray-500'>
-                      Se consiguen en puerta
-                    </span>
-                  )
-                )}
+                  {ticketLink ? (
+                    <div onClick={(e) => e.stopPropagation()}>
+                      <Link
+                        href={ticketLink!}
+                        rel='noopener noreferrer'
+                        className='bg-slate-200 ms-4 rounded-2xl p-2 hover:bg-slate-300 hover:text-cyan-900 antialiased'
+                      >
+                        {ticketPrice === '0'
+                          ? 'Conseguí tus entradas'
+                          : 'Comprar'}
+                      </Link>
+                    </div>
+                  ) : (
+                    ticketPrice !== '0' && (
+                      <span className='text-gray-500'>
+                        Se consiguen en puerta
+                      </span>
+                    )
+                  )}
+                </div>
+                <div
+                  className='ml-auto me-3'
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <BotonCompartir eventSlug={eventSlug} />
+                </div>
               </div>
             </div>
           </div>
@@ -168,3 +171,18 @@ export const EventoCard2 = ({
 //           <div className='flex items-center mt-2 gap-x-4'>
 
 //         </div>
+{
+  /* <Link href={eventGoogleMaps || eventSlug}>
+              <div className='flex flex-row gap-1 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100'>
+                <IoLocationSharp className='mt-0.5 hidden md:block' />
+
+                <p className='md:font-semibold text-center font-normal text-gray-900'>
+                  {eventLocation}
+                </p>
+                <div className='place-self-center'> - </div>
+                <p className='text-gray-600 text-center'>
+                  {eventLocationName}
+                </p>
+              </div>
+            </Link> */
+}
