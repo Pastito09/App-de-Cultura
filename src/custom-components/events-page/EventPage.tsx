@@ -28,8 +28,6 @@ export const EventPage = ({ event }: EventPageProps) => {
     eventSlug,
   } = event;
 
-  const eventUrl = `https://agendadecultura.vercel.app/${eventSlug}`;
-
   const { diaDeLaSemana, dia } =
     getDiasHoras(eventDate) || new Date();
 
@@ -131,7 +129,10 @@ export const EventPage = ({ event }: EventPageProps) => {
                       </span>
                     )
                   )}
-                  <BotonCompartir title={eventTitle} url={eventUrl} />
+                  <BotonCompartir
+                    title={eventTitle}
+                    eventSlug={eventSlug}
+                  />
 
                   {/* {ticketLink && ticketPrice !== '0' ? (
                     <Link
