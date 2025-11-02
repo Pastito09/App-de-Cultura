@@ -48,7 +48,7 @@ export default function BotonCompartir({
     }
   };
 
-  const copyToClipboard = async () => {
+  const copyToClipboard = async (showToast = true) => {
     if (!currentUrl) return;
     try {
       if (navigator.clipboard?.writeText) {
@@ -64,7 +64,9 @@ export default function BotonCompartir({
         document.execCommand('copy');
         document.body.removeChild(textarea);
       }
-      toast('Enlace copiado al portapapeles ✅');
+      if (showToast) {
+        toast('Enlace copiado al portapapeles ✅');
+      }
     } catch (error) {
       toast.error('No se pudo copiar el enlace.');
       console.error(error);
@@ -79,7 +81,7 @@ export default function BotonCompartir({
     );
 
     try {
-      await copyToClipboard();
+      await copyToClipboard(false);
     } catch {
       toast.error(
         'No se pudo copiar automáticamente. Copialo manualmente.'
@@ -173,7 +175,7 @@ export default function BotonCompartir({
         </DropdownMenuItem>
 
         <DropdownMenuItem
-          onClick={copyToClipboard}
+          onClick={() => copyToClipboard()}
           className='flex items-center gap-2'
         >
           <Copy size={16} />
