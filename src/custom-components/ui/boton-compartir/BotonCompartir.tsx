@@ -30,7 +30,7 @@ export default function BotonCompartir({
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const origin = window.location.origin;
-      setCurrentUrl(`${origin}${eventSlug}`);
+      setCurrentUrl(`${origin}/${eventSlug}`);
     } else {
       setCurrentUrl(
         `${process.env.NEXT_PUBLIC_SITE_URL}/${eventSlug}`
