@@ -55,10 +55,20 @@ const formSchema = z.object({
   eventLocationMap: z
     .string()
     .optional()
+    .transform((value) => {
+      if (!value) return value;
+      return value.startsWith('http://') ? value : `https://${value}`;
+    })
     .nullable(),
   eventImage: z.string().optional(),
   ticketPrice: z.string().optional(),
-  ticketLink: z.string().optional(),
+  ticketLink: z
+    .string()
+    .optional()
+    .transform((value) => {
+      if (!value) return value;
+      return value.startsWith('http://') ? value : `https://${value}`;
+    }),
   eventType: z.string({
     required_error: 'El tipo de evento es requerido',
   }),
@@ -66,7 +76,7 @@ const formSchema = z.object({
 
 export const updateEvent = async (formData: FormData) => {
   const eventDataParsed = formSchema.safeParse(
-    Object.fromEntries(formData)
+    Object.fromEntries(formData),
   );
 
   if (!eventDataParsed.success) {
