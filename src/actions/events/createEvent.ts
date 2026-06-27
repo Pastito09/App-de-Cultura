@@ -41,11 +41,23 @@ const formSchema = z.object({
     })
     .min(3)
     .max(100),
-  eventlocationMap: z.string().optional(),
+  eventlocationMap: z
+    .string()
+    .optional()
+    .transform((value) => {
+      if (!value) return value;
+      return value.startsWith('http://') ? value : `https://${value}`;
+    }),
   tags: z.array(z.string()).optional(),
 
   ticketPrice: z.string().optional(),
-  ticketLink: z.string().optional(),
+  ticketLink: z
+    .string()
+    .optional()
+    .transform((value) => {
+      if (!value) return value;
+      return value.startsWith('http://') ? value : `https://${value}`;
+    }),
   eventType: z.string({
     required_error: 'El tipo de evento es requerido',
   }),
@@ -63,7 +75,7 @@ export const createEvent = async (formData: FormData) => {
   }
 
   const eventDataParsed = formSchema.safeParse(
-    Object.fromEntries(formData)
+    Object.fromEntries(formData),
   );
 
   if (!eventDataParsed.success) {
